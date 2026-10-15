@@ -41,11 +41,8 @@ body.served .has-sel .ro{display:none}
 
 /* aurora backdrop */
 .aurora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.aurora i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.38}
-.aurora i:nth-child(1){width:560px;height:560px;left:-120px;top:-100px;background:#38bdf8;animation:drift 26s ease-in-out infinite alternate}
-.aurora i:nth-child(2){width:520px;height:520px;right:-140px;top:120px;background:#a78bfa;animation:drift 32s ease-in-out infinite alternate-reverse}
-.aurora i:nth-child(3){width:480px;height:480px;left:30%;bottom:-200px;background:#2dd4bf;opacity:.22;animation:drift 38s ease-in-out infinite alternate}
-@keyframes drift{to{transform:translate(70px,50px) scale(1.12)}}
+.aurora{background:radial-gradient(60% 50% at 8% 0%,rgba(56,189,248,.2),transparent 70%),radial-gradient(50% 45% at 100% 12%,rgba(167,139,250,.18),transparent 70%),radial-gradient(45% 40% at 35% 100%,rgba(45,212,191,.12),transparent 70%)}
+.aurora i{display:none}
 
 .glass{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 8px 32px rgba(3,8,24,.35),inset 0 1px 0 rgba(255,255,255,.06)}
 
@@ -234,7 +231,7 @@ dialog::backdrop{background:rgba(5,8,20,.72);backdrop-filter:blur(4px)}
 .dbtns{display:flex;gap:10px}
 @media (max-width:700px){.row4{grid-template-columns:1fr 1fr}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
-@media print{.top,.aurora,.live,.flt{display:none!important}body{background:#fff;color:#000}}
+@media print{.top,.aurora,#net,.live,.flt{display:none!important}body{background:#fff;color:#000}}
 """
 
 MASCOT = r"""<svg class="mascot" viewBox="0 0 220 250" role="img" aria-label="Qi, the Qent mascot: a round, friendly robot with glowing eyes and a small shield badge">
@@ -287,7 +284,8 @@ function view(name, pir, go = true) {
     navs.forEach(b => b.setAttribute("aria-current", b.dataset.pir === id));
     if (go) history.replaceState(null, "", "#" + id);
   } else if (go) history.replaceState(null, "", "#" + name);
-  if (go) { $("#workspace").scrollIntoView({behavior: reduce ? "auto" : "smooth"}); if (document.body.dataset.stage === "app") { qiMove(); qiSay(tips[name] || tips.pirs); } }
+  if (go) { (window.qScroll || (el => el.scrollIntoView({behavior: reduce ? "auto" : "smooth"})))($("#workspace")); if (document.body.dataset.stage === "app") { qiMove(); qiSay(tips[name] || tips.pirs); } }
+  document.dispatchEvent(new CustomEvent("qent:view", {detail: name}));
 }
 const open = (h, go = true) => /^PIR-/.test(h) ? view("pirs", h, go) : view(h || "intel", undefined, go);
 
@@ -305,7 +303,7 @@ function toApp(animate) {
   qiMove();
   history.replaceState(null, "", "#" + (document.body.dataset.view === "pirs" ? (panels.find(p => !p.hidden) || {dataset: {}}).dataset.id : document.body.dataset.view)); // reloads (collect, save, AI poll) stay in the app
   L.classList.add("leaving");
-  setTimeout(() => { body.dataset.stage = "app"; L.classList.remove("leaving"); scrollTo(0, 0); qiSay(tips.intel); }, animate && !reduce ? 750 : 0);
+  setTimeout(() => { body.dataset.stage = "app"; L.classList.remove("leaving"); scrollTo(0, 0); qiSay(tips.intel); document.dispatchEvent(new Event("qent:stage")); }, animate && !reduce ? 750 : 0);
 }
 function toLanding() {
   history.replaceState(null, "", location.pathname + location.search);
@@ -488,7 +486,201 @@ PORT = int(os.environ.get("PORT", 8080))
 ALLOWED_HOSTS = {h.strip().lower() for h in os.environ.get("ALLOWED_HOSTS", "").split(",") if h.strip()} | ({f"localhost:{PORT}", f"127.0.0.1:{PORT}"} if not CLOUD else set())
 SQLITE = Path(os.environ.get("QENT_DB") or Path(__file__).with_name("qent.db"))  # local mode only
 FONTS = Path(__file__).with_name("fonts")
+STATIC = Path(__file__).with_name("static")  # vendored GSAP, ScrollTrigger, Lenis (see static/THIRD_PARTY.md)
 PRIVATE_OK = {h.strip().lower() for h in os.environ.get("ALLOW_PRIVATE_HOSTS", "").split(",") if h.strip()}  # e.g. an internal MISP; set at deploy time, never from the UI
+FXCSS = r"""/* effects layer */
+html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}.lenis.lenis-stopped{overflow:hidden}
+.fx{scroll-behavior:auto}
+#net{position:fixed;inset:0;z-index:0;pointer-events:none;transition:opacity .8s}body[data-stage=app] #net{opacity:.5}
+#prog{position:fixed;left:0;top:0;right:0;height:3px;z-index:60;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--sky),var(--mint),var(--pink));pointer-events:none}
+body[data-stage=landing] #prog{opacity:0}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.14em;margin-bottom:-.14em}.wi{display:inline-block;will-change:transform}
+h1.big em .wi{background:linear-gradient(120deg,var(--sky),var(--vio) 55%,var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+h1.big em{background-size:220% auto;animation:shine 7s linear infinite}
+@keyframes shine{to{background-position:220% center}}
+.spot::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s;background:radial-gradient(280px circle at var(--mx,50%) var(--my,50%),rgba(125,211,252,.17),transparent 62%)}
+.spot:hover::after{opacity:1}
+.fx .btn.go{animation:none}.fx #go,.fx #run{transition:box-shadow .2s}
+.fx .tabs{position:sticky}.tabpill{position:absolute;left:0;top:6px;bottom:6px;z-index:0;border-radius:99px;background:linear-gradient(135deg,var(--sky),var(--vio));box-shadow:0 6px 18px rgba(125,211,252,.28);pointer-events:none}
+.fx .tab{position:relative;z-index:1}.fx .tab[aria-selected=true]{background:transparent}
+#kbbtn{min-width:40px;padding:0 12px}
+#kb{position:fixed;inset:0;z-index:90;display:grid;place-items:center;background:rgba(5,8,20,.72);backdrop-filter:blur(4px)}#kb[hidden]{display:none}
+.kbc{width:min(420px,92vw);padding:22px 26px;background:#0d1328}.kbc h2{margin:0 0 12px;font:400 24px var(--head)}
+.kbc dl{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;margin:0}.kbc dt{text-align:right}.kbc dd{margin:0;color:var(--mute)}
+kbd{display:inline-block;min-width:24px;padding:1px 7px;border:1px solid var(--line2);border-bottom-width:2px;border-radius:6px;background:var(--glass2);font:600 12px var(--mono);text-align:center}
+@media (prefers-reduced-motion:reduce){h1.big em{animation:none}.spot::after{transition:none}}
+.tabs,.pn{scrollbar-width:none}.tabs::-webkit-scrollbar,.pn::-webkit-scrollbar{display:none}
+@media (pointer:coarse){.spot::after{display:none}}
+@media (max-width:1000px){.side>section{display:none}.pn{flex-direction:row;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x proximity}.pn li{flex:0 0 min(78vw,300px);scroll-snap-align:start}.top{margin-inline:12px}}
+@media print{#net,#prog,#kb{display:none!important}}
+"""
+FX = r"""// Qent effects layer. Every part is optional: without GSAP / Lenis / canvas the app works exactly as before.
+(() => {
+const $ = (s, r = document) => r.querySelector(s), all = (s, r = document) => [...r.querySelectorAll(s)];
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches, G = window.gsap, ST = window.ScrollTrigger, body = document.body;
+document.documentElement.classList.add("fx");
+if (G && ST) G.registerPlugin(ST);
+
+// ---- 1. network background (Vanta NET idea): drifting nodes, links, a few "hot" nodes that pulse
+(() => {
+  const c = $("#net"); if (!c) return;
+  const x = c.getContext("2d"); let W = 0, H = 0, dpr = 1, pts = [], mx = -1e4, my = -1e4, tick = 0;
+  const size = () => {
+    dpr = Math.min(devicePixelRatio || 1, 2); W = c.width = innerWidth * dpr; H = c.height = innerHeight * dpr;
+    const n = Math.round(Math.min(72, innerWidth * innerHeight / 24000));
+    while (pts.length < n) pts.push({x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .3 * dpr, vy: (Math.random() - .5) * .3 * dpr, r: (1 + Math.random() * 1.5) * dpr, hot: Math.random() < .07, ph: Math.random() * 6.3});
+    pts.length = n;
+  };
+  const draw = () => {
+    x.clearRect(0, 0, W, H); const D = 165 * dpr, M = 190 * dpr; tick += .02;
+    for (const p of pts) {
+      if (!reduce) { p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1; }
+    }
+    for (let i = 0; i < pts.length; i++) {
+      const a = pts[i];
+      for (let j = i + 1; j < pts.length; j++) {
+        const b = pts[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (d < D) { x.strokeStyle = `rgba(125,211,252,${(1 - d / D) * .36})`; x.lineWidth = dpr; x.beginPath(); x.moveTo(a.x, a.y); x.lineTo(b.x, b.y); x.stroke(); }
+      }
+      const dm = Math.hypot(a.x - mx, a.y - my);
+      if (dm < M) { x.strokeStyle = `rgba(94,234,212,${(1 - dm / M) * .5})`; x.lineWidth = dpr; x.beginPath(); x.moveTo(a.x, a.y); x.lineTo(mx, my); x.stroke(); }
+    }
+    for (const p of pts) {
+      x.fillStyle = p.hot ? "rgba(249,168,212,.9)" : "rgba(125,211,252,.9)"; x.beginPath(); x.arc(p.x, p.y, p.r, 0, 6.3); x.fill();
+      if (p.hot) { const k = (Math.sin(tick + p.ph) + 1) / 2; x.strokeStyle = `rgba(249,168,212,${.35 * (1 - k)})`; x.beginPath(); x.arc(p.x, p.y, p.r + k * 16 * dpr, 0, 6.3); x.stroke(); }
+    }
+  };
+  const loop = () => { if (!document.hidden) draw(); requestAnimationFrame(loop); };
+  size(); addEventListener("resize", () => { size(); if (reduce) draw(); });
+  addEventListener("pointermove", e => { mx = e.clientX * dpr; my = e.clientY * dpr; }, {passive: true});
+  addEventListener("pointerleave", () => { mx = my = -1e4; });
+  reduce ? draw() : loop();
+})();
+
+// ---- 2. smooth scroll (Lenis) wired into GSAP's ticker; native scroll stays inside the landing, side panel, tables and dialogs
+let lenis = null;
+all("#landing,.side,.pn,.mxw,dialog,textarea").forEach(e => e.setAttribute("data-lenis-prevent", ""));
+if (!reduce && window.Lenis) {
+  lenis = new Lenis({lerp: .09, smoothWheel: true}); window.lenis = lenis;
+  if (G && ST) { lenis.on("scroll", ST.update); G.ticker.add(t => lenis.raf(t * 1000)); G.ticker.lagSmoothing(0); }
+  else { const raf = t => { lenis.raf(t); requestAnimationFrame(raf); }; requestAnimationFrame(raf); }
+}
+window.qScroll = el => lenis ? lenis.scrollTo(el, {offset: -84, duration: 1.1}) : el.scrollIntoView({behavior: reduce ? "auto" : "smooth"});
+
+// ---- 3. scroll progress bar (ScrollTrigger)
+const prog = $("#prog");
+if (prog && ST) ST.create({start: 0, end: "max", onUpdate: s => prog.style.transform = `scaleX(${s.progress})`});
+
+// ---- helpers: split words (React Bits SplitText idea) and count-up (CountUp)
+function split(el) {
+  const src = el.innerHTML;
+  const walk = n => [...n.childNodes].forEach(c => {
+    if (c.nodeType === 3) {
+      const f = document.createDocumentFragment();
+      c.textContent.split(/(\s+)/).forEach(s => { if (!s.trim()) return f.append(s); const w = document.createElement("span"), i = document.createElement("span"); w.className = "w"; i.className = "wi"; i.textContent = s; w.append(i); f.append(w); });
+      c.replaceWith(f);
+    } else if (c.nodeType === 1) walk(c);
+  });
+  walk(el);
+  return {words: all(".wi", el), restore: () => { el.innerHTML = src; }};
+}
+function countUp(el, d = 1.3) {
+  const m = el.textContent.match(/\d[\d,]*/); if (!m || reduce || !G) return;
+  const to = +m[0].replace(/,/g, ""), pre = el.textContent.slice(0, m.index), post = el.textContent.slice(m.index + m[0].length), o = {v: 0};
+  if (!to) return;
+  el.textContent = pre + "0" + post;
+  G.to(o, {v: to, duration: d, ease: "power2.out", onUpdate: () => { el.textContent = pre + Math.round(o.v) + post; }});
+}
+
+// ---- 4. landing intro timeline
+function intro() {
+  if (!G || reduce || body.dataset.stage !== "landing") return;
+  const sp = split($("h1.big")), left = $("#landing .lwrap > div:first-child"), right = $(".lright");
+  G.timeline({defaults: {ease: "power3.out"}})
+    .from(".eyebrow", {y: 14, opacity: 0, duration: .5})
+    .from(sp.words, {yPercent: 115, duration: .85, stagger: .05}, "-=.25")
+    .from(left.querySelector(".lead"), {y: 16, opacity: 0, duration: .6, clearProps: "transform,opacity"}, "-=.45")
+    .from(".pcard", {y: 34, opacity: 0, scale: .96, duration: .7, stagger: .1, clearProps: "transform,opacity"}, "-=.4")
+    .from([...right.children].filter(e => e.id !== "qislot"), {y: 24, opacity: 0, duration: .6, stagger: .07, clearProps: "transform,opacity"}, "-=.7")
+    .add(() => all(".pcard .n,.lright .flow em").forEach(e => countUp(e, 1.4)), "-=1.1")
+    .add(() => sp.restore());
+}
+
+// ---- 5. app: sliding tab pill, view transitions, scroll reveals, bars
+function pill(now) {
+  const bar = $(".tabs"); if (!bar) return;
+  let p = $(".tabpill", bar); if (!p) { p = document.createElement("i"); p.className = "tabpill"; bar.prepend(p); now = true; }
+  const t = $(".tab[aria-selected=true]", bar); if (!t) return;
+  const to = {x: t.offsetLeft, width: t.offsetWidth};
+  G && !now && !reduce ? G.to(p, {...to, duration: .5, ease: "power3.out"}) : G ? G.set(p, to) : Object.assign(p.style, {transform: `translateX(${to.x}px)`, width: to.width + "px"});
+}
+const topCards = v => all(".card", v).filter(c => !c.parentElement.closest(".card"));
+function enter(name) {
+  pill();
+  const v = $(`.view[data-view="${name}"]`); if (!v || !G || reduce) return;
+  ST && ST.getAll().filter(s => s.vars.id === "rv").forEach(s => s.kill());
+  const cards = topCards(v), below = cards.filter(c => c.getBoundingClientRect().top > innerHeight * .92), now = cards.filter(c => !below.includes(c));
+  G.fromTo(now, {y: 22, opacity: 0}, {y: 0, opacity: 1, duration: .6, stagger: .07, ease: "power3.out", clearProps: "transform,opacity", overwrite: "auto"});
+  if (ST) below.forEach(c => { G.set(c, {y: 30, opacity: 0}); ST.create({id: "rv", trigger: c, start: "top 92%", once: true, onEnter: () => G.to(c, {y: 0, opacity: 1, duration: .7, ease: "power3.out", clearProps: "transform,opacity"})}); });
+  G.fromTo(all("tbody tr:not([hidden]),.item:not([hidden])", v).slice(0, 28), {opacity: 0, x: -10}, {opacity: 1, x: 0, duration: .4, stagger: .02, delay: .15, ease: "power2.out", clearProps: "transform,opacity"});
+  all(".rel i", v).slice(0, 40).forEach(i => G.fromTo(i, {"--w": "0%"}, {"--w": getComputedStyle(i).getPropertyValue("--w").trim() || "0%", duration: .9, delay: .2, ease: "power2.out"}));
+  ST && ST.refresh();
+}
+let first = true;
+function stage() {
+  if (body.dataset.stage !== "app") return;
+  pill(true);
+  if (first) { first = false; all(".stats .stat b,.tile b").forEach(e => countUp(e, 1.1)); }
+  enter(body.dataset.view);
+}
+document.addEventListener("qent:view", e => { if (body.dataset.stage === "app") enter(e.detail); });
+document.addEventListener("qent:stage", stage);
+addEventListener("resize", () => pill(true));
+
+// ---- 6. spotlight cards (React Bits SpotlightCard), magnetic buttons, mascot tilt
+all(".card,.pcard,.xo,.tile,.pn button,.stat,.flow li").forEach(el => { if (getComputedStyle(el).position === "static") el.style.position = "relative"; el.classList.add("spot"); });
+document.addEventListener("pointermove", e => {
+  const el = e.target.closest && e.target.closest(".spot"); if (!el) return;
+  const r = el.getBoundingClientRect(); el.style.setProperty("--mx", e.clientX - r.left + "px"); el.style.setProperty("--my", e.clientY - r.top + "px");
+}, {passive: true});
+if (G && !reduce) {
+  all("#go,#run").forEach(b => {
+    const qx = G.quickTo(b, "x", {duration: .4, ease: "power3"}), qy = G.quickTo(b, "y", {duration: .4, ease: "power3"});
+    b.addEventListener("pointermove", e => { const r = b.getBoundingClientRect(); qx((e.clientX - r.left - r.width / 2) * .25); qy((e.clientY - r.top - r.height / 2) * .35); });
+    b.addEventListener("pointerleave", () => { qx(0); qy(0); });
+  });
+  const m = $("#qi .mascot");
+  if (m) { const rx = G.quickTo(m, "rotationX", {duration: .7}), ry = G.quickTo(m, "rotationY", {duration: .7}); G.set(m, {transformPerspective: 600});
+    addEventListener("pointermove", e => { ry((e.clientX / innerWidth - .5) * 18); rx(-(e.clientY / innerHeight - .5) * 14); }, {passive: true}); }
+}
+
+// ---- 7. keyboard: 1-6 tabs, j/k requirements, / search, ? help
+const kb = document.createElement("div"); kb.id = "kb"; kb.hidden = true;
+kb.innerHTML = '<div class="kbc glass" role="dialog" aria-modal="true" aria-label="Keyboard shortcuts"><h2>Keyboard</h2><dl>'
+  + all(".tab").map((t, i) => `<dt><kbd>${i + 1}</kbd></dt><dd>${t.textContent}</dd>`).join("")
+  + '<dt><kbd>j</kbd> <kbd>k</kbd></dt><dd>Next / previous requirement</dd><dt><kbd>/</kbd></dt><dd>Search indicators</dd><dt><kbd>?</kbd></dt><dd>This help</dd><dt><kbd>Esc</kbd></dt><dd>Close</dd></dl></div>';
+body.append(kb); kb.addEventListener("click", e => { if (e.target === kb) kb.hidden = true; });
+const bar0 = $(".top"), run = $("#run");
+if (bar0) { const b = document.createElement("button"); b.className = "btn ghost sm"; b.id = "kbbtn"; b.type = "button"; b.textContent = "?"; b.title = "Keyboard shortcuts"; b.setAttribute("aria-label", "Keyboard shortcuts"); b.onclick = () => { kb.hidden = !kb.hidden; }; run ? run.before(b) : bar0.append(b); }
+addEventListener("keydown", e => {
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  const t = e.target; if (/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName) || t.isContentEditable || (t.closest && t.closest("dialog"))) return;
+  const k = e.key;
+  if (k === "Escape") { kb.hidden = true; return; }
+  if (body.dataset.stage === "landing") { if (k === "Enter" && t === body) $("#go").click(); return; }
+  if (/^[1-6]$/.test(k)) { const b = all(".tab")[+k - 1]; if (b) b.click(); }
+  else if (k === "/") { const i = $(".view:not([hidden]) input[type=search]"); if (i) { e.preventDefault(); i.focus(); } }
+  else if (k === "?") kb.hidden = !kb.hidden;
+  else if (k === "j" || k === "k") {
+    if (body.dataset.view !== "pirs") return $('.tab[data-view="pirs"]').click();
+    const b = all(".pn button"), i = b.findIndex(x => x.getAttribute("aria-current") === "true"); if (b.length) b[(i + (k === "j" ? 1 : -1) + b.length) % b.length].click();
+  }
+});
+
+intro();
+stage();
+})();
+"""
 SCHEMA = """CREATE TABLE IF NOT EXISTS pirs(id TEXT PRIMARY KEY, question TEXT, decision_supported TEXT, level TEXT, owner TEXT, deadline TEXT, match_keywords TEXT, stale_days INTEGER);
 CREATE TABLE IF NOT EXISTS sources(id TEXT PRIMARY KEY, name TEXT, type TEXT, reliability TEXT, pirs TEXT, kind TEXT, url TEXT, enabled INTEGER DEFAULT 1, secret_env TEXT, opts TEXT);
 CREATE TABLE IF NOT EXISTS items(date TEXT, pir_id TEXT, source_id TEXT, ref TEXT, title TEXT, matched_on TEXT, action TEXT, level TEXT, summary TEXT, iocs TEXT, PRIMARY KEY(ref, pir_id));
@@ -2190,7 +2382,7 @@ def report_pdf(res, inds, per, src, iv=None):
             d.table(["Date", "Source", "Evidence", "Link"], [54, 82, 214, 165],
                     [[str(i["date"])[:10], f'{i["source_id"]} ({src.get(i["source_id"], {}).get("reliability") or "?"})', str(i.get("title") or i["ref"])[:160], re.sub(r"^https?://", "", str(i["ref"]))[:72]] for i in a["top"]], mono=(3,))
         c = Counter(x["type"] for x in inds if r["id"] in x["pirs"])
-        d.para("Indicators: " + (", ".join(f"{c[t]} {INAME[t]}" for t in ITYPES if c[t]) or "none"), 8.5, col=MUTE)
+        d.para("IoCs: " + (", ".join(f"{c[t]} {INAME[t]}" for t in IOC_TYPES if c[t]) or "none"), 8.5, col=MUTE)
         if r["flags"]:
             d.para("Collection flags: " + "; ".join(r["flags"]), 8.5, col=AMBER)
 
@@ -2367,7 +2559,7 @@ def render(errors, res, failed, today, sources=(), runs=(), marks={}, role="Admi
     feeds_ok = sum(1 for x in hrows if x[0] == "Feeds" and x[1] in feed_ids and x[2] != "fail")  # warn = answered but quiet, still working
     feeds_n = sum(1 for x in hrows if x[0] == "Feeds" and x[1] in feed_ids)
     link = lambda ref, txt: f'<a href="{e(str(ref))}" target="_blank" rel="noopener">{e(txt)}</a>' if str(ref).startswith("http") else e(txt)
-    chip = lambda cls, label, val: f'<div class="stat {cls}"><b>{val}</b><span>{label}</span></div>'
+    chip = lambda cls, label, val: f'<div class="stat {cls}" role="listitem"><b>{val}</b><span>{label}</span></div>'
     ind_by_pir = {r["id"]: Counter(d["type"] for d in inds if r["id"] in d["pirs"]) for r in res}
 
     nav, panels, board, kj = "", "", "", ""
@@ -2380,7 +2572,7 @@ def render(errors, res, failed, today, sources=(), runs=(), marks={}, role="Admi
         llm_ok = a["llm"] and not a["llm"].startswith(("LLM error", LOADING))
         finding = first_sentence(a["llm"]) if llm_ok else (f'Evidence centres on {", ".join(a["themes"])}.' if a["themes"] else "No usable evidence yet.")
         ic = ind_by_pir[r["id"]]
-        icells = " ".join(f'{ic[t]} {INAME[t].split(" ")[0]}' for t in ITYPES if ic[t]) or "none"
+        icells = " ".join(f'{ic[t]} {INAME[t].split(" ")[0]}' for t in IOC_TYPES if ic[t]) or "none"
         rep, tk = a["n_src"], len(r["sources"])
         newest = s_(r["newest"], "-")
         board += (f'<tr><td><a href="#{pid}" data-goto="{pid}"><b class="mono">{pid}</b></a></td><td><span class="badge st-{st}">{st}</span></td>'
@@ -2496,9 +2688,10 @@ def render(errors, res, failed, today, sources=(), runs=(), marks={}, role="Admi
     matched = sum(int(r.get("kept") or 0) for r in last.values())
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Qent | {today}</title>
+<meta name="description" content="Qent: PIR-driven threat intelligence. Feeds, MISP and your own logs, tied to the questions your business needs answered.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23090e1d'/%3E%3Ccircle cx='16' cy='16' r='9' fill='%23c4b5fd'/%3E%3Ccircle cx='12.5' cy='15' r='2' fill='%235eead4'/%3E%3Ccircle cx='19.5' cy='15' r='2' fill='%235eead4'/%3E%3C/svg%3E">
-<style>{CSS}</style></head><body data-stage="landing">
-<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<style>{CSS}{FXCSS}</style></head><body data-stage="landing">
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div><canvas id="net" aria-hidden="true"></canvas><div id="prog" aria-hidden="true"></div>
 <section id="landing" aria-label="Welcome"><div class="lwrap">
   <div>
     <span class="eyebrow">The problem</span>
@@ -2537,7 +2730,7 @@ def render(errors, res, failed, today, sources=(), runs=(), marks={}, role="Admi
 {rej}
 <div class="view" data-view="overview" hidden>
 <section class="card"><h2 class="h">Are the PIRs being answered?</h2>
-  <div class="mxw"><table class="tbl"><thead><tr><th>PIR</th><th>Status</th><th>Sources reporting</th><th>Items</th><th>Newest</th><th>Confidence</th><th>Indicators</th><th>Key finding</th></tr></thead><tbody>{board or '<tr><td colspan="8" class="none">No PIRs yet. Write the first one with New PIR.</td></tr>'}</tbody></table></div>
+  <div class="mxw"><table class="tbl"><thead><tr><th>PIR</th><th>Status</th><th>Sources reporting</th><th>Items</th><th>Newest</th><th>Confidence</th><th>IoCs</th><th>Key finding</th></tr></thead><tbody>{board or '<tr><td colspan="8" class="none">No PIRs yet. Write the first one with New PIR.</td></tr>'}</tbody></table></div>
   <div class="how"><div><b>OPEN</b> no collected item matches yet</div><div><b>PARTIAL</b> some evidence, not yet corroborated</div><div><b>SUPPORTED</b> 2+ independent sources and a strong match (automatic)</div><div><b>ANSWERED</b> an analyst marked an item as answering it (Requirements tab)</div></div></section>
 <section class="card"><h2 class="h">Coverage &middot; PIR x source</h2>
   <div class="mxw"><table class="mx"><thead><tr><th scope="col"></th>{th}</tr></thead><tbody>{mrows}</tbody></table></div>
@@ -2575,7 +2768,7 @@ def render(errors, res, failed, today, sources=(), runs=(), marks={}, role="Admi
 <footer>Qent &middot; every item traced to a PIR and a vetted source &middot; {today}</footer>
 </div></section>
 </div>
-{dialog}<script>{JS}</script></body></html>"""
+{dialog}<script src="/static/gsap.min.js"></script><script src="/static/ScrollTrigger.min.js"></script><script src="/static/lenis.min.js"></script><script>{JS}</script><script>{FX}</script></body></html>"""
 
 
 # source id (as in Sources sheet) -> (kind, url)
@@ -2774,7 +2967,7 @@ def build(role="Admin", user="local"):
 
 
 SEC_HEADERS = (("X-Content-Type-Options", "nosniff"), ("X-Frame-Options", "DENY"), ("Referrer-Policy", "no-referrer"), ("Cache-Control", "no-store"),
-               ("Content-Security-Policy", "default-src 'none'; style-src 'self' 'unsafe-inline'; script-src 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'"))
+               ("Content-Security-Policy", "default-src 'none'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'"))
 
 
 class H(BaseHTTPRequestHandler):
@@ -2836,6 +3029,8 @@ class H(BaseHTTPRequestHandler):
             return self._send(200, json.dumps({"pending": len(_busy)}).encode(), "application/json")
         if path == "/collect/status":
             return self._send(200, json.dumps({"running": _collecting}).encode(), "application/json")
+        if re.fullmatch(r"/static/[A-Za-z0-9.-]+\.min\.js", path) and (STATIC / path[8:]).is_file():
+            return self._send(200, (STATIC / path[8:]).read_bytes(), "text/javascript; charset=utf-8", (("Cache-Control", "public, max-age=86400"),))
         if re.fullmatch(r"/fonts/[a-z0-9-]+\.woff2", path) and (FONTS / path[7:]).is_file():
             return self._send(200, (FONTS / path[7:]).read_bytes(), "font/woff2", (("Cache-Control", "public, max-age=86400"),))
         if path == "/iocs.csv":

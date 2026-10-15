@@ -8,6 +8,7 @@ COPY cloud/requirements.txt .
 RUN pip install --no-cache-dir --require-hashes -r requirements.txt
 COPY qent.py .
 COPY fonts ./fonts
+COPY static ./static
 USER 10001
 EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=5s CMD python -c "import os,urllib.request;urllib.request.urlopen('http://127.0.0.1:%s/healthz' % os.environ['PORT'])"
