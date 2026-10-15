@@ -104,6 +104,8 @@ Everything that leaves passes `share_safe()`: no pseudonyms, no private IPs.
 - **Audit:** every mark, grade, upload, delete and export is recorded with who and when.
 - **Health tab:** per feed (disabled, key missing, never run, failed, returned 0, none matched), per PIR (gap, stale) and for AI and the analyst loop. Each check says how to fix it.
 
+Interface notes: scrolling is smoothed by Lenis and animated with GSAP / ScrollTrigger (both vendored in `static/`, served by Qent, no CDN). The network background, split-text intro, spotlight cards and count-up numbers are original code. With `prefers-reduced-motion` or without the scripts, everything is shown immediately. Shortcuts: `1-6` switch tabs, `j` / `k` move through requirements, `/` searches indicators, `?` lists them.
+
 ## 9. Security of Qent itself
 
 Host-header checks, Origin checks on every write, size caps on feeds and uploads, public-address-only fetching (private hosts only by explicit opt-in over https), self-signed MISP certificates pinned by file rather than disabling verification, secrets only from the environment, spreadsheet-formula neutralising in CSV exports. Details in [SECURITY.md](SECURITY.md).

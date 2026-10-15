@@ -83,7 +83,8 @@ Each PIR carries 20+ keywords so collection is broad. Replace them with your own
 | **MISP** | Look up your log indicators in your MISP (read), optionally push events and sightings back (off by default) |
 | **Outputs** | STIX 2.1, CSV, PDF, read-only TAXII 2.1 |
 | **AI summaries** | Optional (Gemini for dev, Azure OpenAI EU for cloud), public feed items only |
-| **Small** | One file, standard library only, SQLite (PostgreSQL in cloud mode) |
+| **Interface** | Smooth scrolling (Lenis), GSAP timelines, an animated network background, spotlight cards, count-up numbers, keyboard shortcuts (`1-6` tabs, `j`/`k` requirements, `/` search, `?` help). Respects reduced-motion. Lighthouse 100 / 100 / 100 |
+| **Small** | One file, standard library only, SQLite (PostgreSQL in cloud mode). Scripts in `static/` are vendored, see `static/THIRD_PARTY.md` |
 
 ## Settings
 
