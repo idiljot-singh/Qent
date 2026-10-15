@@ -2773,7 +2773,6 @@ def render(errors, res, failed, today, sources=(), runs=(), marks={}, role="Admi
 
 # source id (as in Sources sheet) -> (kind, url)
 FEEDS = {
-    "CISA-KEV": ("kev", "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"),
     "DARKREADING": ("rss", "https://www.darkreading.com/rss.xml"),
     "CERT-EU": ("rss", "https://cert.europa.eu/publications/security-advisories-rss"),
     "THN": ("rss", "https://feeds.feedburner.com/TheHackersNews"),
@@ -3265,11 +3264,11 @@ def selftest():
     SQLITE = Path(tempfile.mkdtemp()) / "old.db"  # a database from before sources had feed columns
     con0 = sqlite3.connect(SQLITE)
     con0.execute("CREATE TABLE sources(id TEXT PRIMARY KEY, name TEXT, type TEXT, reliability TEXT, pirs TEXT)")
-    con0.execute("INSERT INTO sources VALUES('CISA-KEV','CISA','government','A','PIR-02')")
+    con0.execute("INSERT INTO sources VALUES('UNIT42','Unit 42','vendor','C','PIR-02')")
     con0.commit(); con0.close()
     init_db()
-    old = [x for x in rows("sources") if x["id"] == "CISA-KEV"][0]
-    assert old["kind"] == "kev" and old["url"].startswith("https://www.cisa.gov") and old["enabled"] == 1, old
+    old = [x for x in rows("sources") if x["id"] == "UNIT42"][0]
+    assert old["kind"] == "rss" and old["url"].startswith("https://unit42.") and old["enabled"] == 1, old
     SQLITE = main_db
     good = {"id": "FINMISP", "name": "FinMISP", "type": "community", "reliability": "B", "kind": "misp", "url": "https://misp.finmisp.test/", "secret_env": "FINMISP_KEY", "days": 14, "enabled": True, "pirs": []}
     err, sid = save_source("a@x", dict(good), True)

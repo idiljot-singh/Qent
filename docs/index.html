@@ -71,7 +71,7 @@ html.fx{scroll-behavior:auto}
 <section id="why"><div class="wrap">
 <div class="tag">The problem</div><h2>Noise, few proven answers, blind spots</h2>
 <div class="grid">
-<div class="card"><div class="num">1,800+</div><h3>Too much noise</h3><p>Items from the feeds in one run. Only about 90 touch one of five PIRs.</p></div>
+<div class="card"><div class="num">160</div><h3>Too much noise</h3><p>Items from 8 feeds in one run. Only 52 touch one of four PIRs.</p></div>
 <div class="card"><div class="num">0/5</div><h3>Few proven answers</h3><p>Nobody can say a question is answered until an analyst confirms it.</p></div>
 <div class="card"><div class="num">?</div><h3>Blind spots</h3><p>A feed fails or goes quiet and nobody notices. Qent's Health tab does.</p></div>
 </div>
@@ -91,6 +91,8 @@ html.fx{scroll-behavior:auto}
 <img src="img/intelligence.jpg" alt="Intelligence tab: PIR status, sources and indicators">
 <img src="img/landing.jpg" alt="Landing page with the Qi mascot">
 </div>
+<p style="color:var(--mute);margin-top:22px;max-width:720px">With a Gemini or Azure OpenAI key, each PIR also gets a short written assessment from public feed items only, marked AI-generated and unverified, with confidence, gaps and a next action.</p>
+<img src="img/ai-summary.jpg" alt="A PIR with its AI-generated assessment, confidence, gaps and action" style="margin-top:14px">
 </div></section>
 
 <section id="diagrams"><div class="wrap"><div class="tag">Diagrams</div><h2>How it works, end to end</h2><h3 style="margin:26px 0 8px;font-size:18px">How Qent works</h3><div style="overflow-x:auto"><img src="diagrams/architecture.svg" alt="How Qent works" style="min-width:900px"></div><h3 style="margin:26px 0 8px;font-size:18px">From feed item to PIR status</h3><div style="overflow-x:auto"><img src="diagrams/pir-status.svg" alt="From feed item to PIR status" style="min-width:900px"></div><h3 style="margin:26px 0 8px;font-size:18px">Internal log privacy and sharing</h3><div style="overflow-x:auto"><img src="diagrams/log-privacy.svg" alt="Internal log privacy and sharing" style="min-width:900px"></div><h3 style="margin:26px 0 8px;font-size:18px">Future cloud production (Azure, EU)</h3><div style="overflow-x:auto"><img src="diagrams/cloud-production.svg" alt="Future cloud production (Azure, EU)" style="min-width:900px"></div><p style="margin-top:18px"><a class="btn s" href="diagrams.html">Open all diagrams</a></p></div></section>
@@ -100,10 +102,9 @@ html.fx{scroll-behavior:auto}
 <div class="scroll"><table>
 <tr><th>ID</th><th>Question</th><th>Level</th></tr>
 <tr><td>PIR-01</td><td>Which phishing, ClickFix and account-takeover techniques are being used against cloud and email accounts right now, and which controls stop them?</td><td>tactical</td></tr>
-<tr><td>PIR-02</td><td>Which vulnerabilities in widely deployed edge and enterprise products (VPNs, firewalls, gateways, load balancers, mail servers, operating systems) are exploited now, and which need patching within a day?</td><td>tactical</td></tr>
-<tr><td>PIR-03</td><td>Which ransomware and extortion groups, and which entry methods, are most active against organisations like ours, and what do they reach first?</td><td>strategic</td></tr>
-<tr><td>PIR-04</td><td>Which state-aligned and espionage actors target our sector and its supply chain, and through which suppliers or partners?</td><td>strategic</td></tr>
-<tr><td>PIR-05</td><td>Which new malware families, loaders and attacker techniques are emerging that our detections and hardening should cover?</td><td>tactical</td></tr>
+<tr><td>PIR-02</td><td>Which ransomware and extortion groups, and which entry methods, are most active against organisations like ours, and what do they reach first?</td><td>strategic</td></tr>
+<tr><td>PIR-03</td><td>Which state-aligned and espionage actors target our sector and its supply chain, and through which suppliers or partners?</td><td>strategic</td></tr>
+<tr><td>PIR-04</td><td>Which new malware families, loaders and attacker techniques are emerging that our detections and hardening should cover?</td><td>tactical</td></tr>
 </table></div>
 </div></section>
 

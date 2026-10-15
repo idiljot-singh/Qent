@@ -13,7 +13,7 @@ A security team gets hundreds of advisories, vendor blogs and feeds a week. With
 | Term | Meaning |
 |---|---|
 | **PIR** | Priority intelligence requirement: a question the business needs answered, with the decision it supports |
-| **Source reliability** | A to F grade of a feed (CISA KEV is A, a vendor blog is C) |
+| **Source reliability** | A to F grade of a feed (a government advisory is A, a vendor blog is C) |
 | **Item** | One feed entry that matched a PIR's keywords |
 | **IoC** | A malicious IP, hash, URL or domain: defanged by the article, listed under its IoC heading, or from a threat feed / MISP |
 | **Context** | CVEs, ATT&CK techniques and actor / malware names found in an item. Shown beside IoCs but never counted as IoCs |
@@ -38,12 +38,11 @@ Your logs -> Findings -> Sightings (vs feeds + MISP) -> Share (STIX / CSV / TAXI
 | ID | Question (short) |
 |---|---|
 | PIR-01 | Phishing, ClickFix and account takeover against cloud and email accounts |
-| PIR-02 | Exploited vulnerabilities in widely deployed edge and enterprise products |
-| PIR-03 | Ransomware and extortion groups and their entry methods |
-| PIR-04 | State-aligned actors targeting our sector and supply chain |
-| PIR-05 | New malware, loaders and techniques our detections should cover |
+| PIR-02 | Ransomware and extortion groups and their entry methods |
+| PIR-03 | State-aligned actors targeting our sector and supply chain |
+| PIR-04 | New malware, loaders and techniques our detections should cover |
 
-**Sources** (Sources tab) are RSS feeds, CISA KEV, abuse.ch Feodo and MISP. Each is *tasked* to the PIRs it can help with and carries a reliability grade. **Collect now** (or `python qent.py collect` on a schedule) fetches them in parallel with size caps and a public-address check, so a feed cannot point Qent at your internal network.
+**Sources** (Sources tab) are RSS feeds, abuse.ch Feodo and MISP (a CISA KEV reader exists but is off: vulnerability prioritisation is Stenwatch's job). Each is *tasked* to the PIRs it can help with and carries a reliability grade. **Collect now** (or `python qent.py collect` on a schedule) fetches them in parallel with size caps and a public-address check, so a feed cannot point Qent at your internal network.
 
 ## 5. Matching, assessment and status
 
