@@ -1,0 +1,304 @@
+timestamp,src_ip,src_country,src_city,username,internal_host,vpn_gateway,url_path,user_agent,auth_result,event_type,bytes_sent,session_duration_sec
+2026-10-11T01:17:00,114.120.185.26,CA,Toronto,lchen,ACME-WKS-022,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,37682,21429
+2026-10-18T08:00:00,114.44.163.171,PK,Karachi,,,vpn02.acme.local,/remote/login,python-requests/2.31.0,N/A,exploit_probe_bypass_attempt,1176,0
+2026-10-16T06:00:00,178.251.102.32,US,New York,lchen,ACME-WKS-011,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,30000,1200
+2026-10-12T16:56:00,65.41.240.5,CA,Toronto,palvarez,ACME-WKS-024,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,5413,11767
+2026-10-10T13:53:00,130.250.128.232,GB,London,hkim,ACME-WKS-028,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,8048,21084
+2026-10-12T15:06:00,206.127.136.41,CA,Toronto,dwilson,ACME-WKS-026,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,9084,12835
+2026-10-11T17:31:00,33.140.166.98,US,Chicago,rpatel,ACME-WKS-020,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,21326,15167
+2026-10-18T08:26:31,83.146.30.233,NG,Lagos,,,vpn01.acme.local,/remote/login,curl/8.4.0,N/A,exploit_probe_bypass_attempt,1145,0
+2026-10-11T17:05:00,184.214.112.115,US,New York,jsmith,ACME-WKS-019,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,2425,25164
+2026-10-12T01:27:00,26.99.151.59,GB,London,bmoore,ACME-WKS-012,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,21809,763
+2026-10-11T21:39:00,186.84.239.236,CA,Toronto,hkim,ACME-WKS-005,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,37004,1183
+2026-10-12T02:04:20,112.205.40.102,IR,Tehran,rpatel,,vpn01.acme.local,/remote/login,Go-http-client/1.1,FAIL,brute_force_attempt,273,0
+2026-10-10T15:42:00,2.36.30.59,US,New York,bmoore,ACME-WKS-003,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,23654,2621
+2026-10-14T04:07:45,205.136.42.187,CN,Shenzhen,swright,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,163,0
+2026-10-12T02:15:00,179.71.240.115,RO,Bucharest,rpatel,,vpn01.acme.local,/remote/login,python-requests/2.31.0,FAIL,brute_force_attempt,140,0
+2026-10-18T08:13:34,74.37.197.130,UA,Kyiv,,,vpn02.acme.local,/api/v1/auth,Go-http-client/1.1,N/A,exploit_probe_bypass_attempt,1740,0
+2026-10-10T10:43:00,142.38.80.1,US,New York,lchen,ACME-WKS-014,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,47178,19758
+2026-10-12T02:02:00,102.28.3.53,IR,Tehran,rpatel,,vpn01.acme.local,/remote/login,Go-http-client/1.1,FAIL,brute_force_attempt,208,0
+2026-10-11T10:30:00,26.58.110.111,CA,Toronto,bmoore,ACME-WKS-015,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,29119,11406
+2026-10-10T22:08:00,76.183.191.111,US,Chicago,cjackson,ACME-WKS-005,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,36810,13802
+2026-10-12T02:33:00,152.216.16.8,US,Chicago,tgreen,ACME-WKS-003,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,17247,16859
+2026-10-12T02:15:40,61.154.62.13,NG,Lagos,rpatel,,vpn01.acme.local,/remote/login,curl/8.4.0,FAIL,brute_force_attempt,314,0
+2026-10-12T02:16:20,162.123.73.75,RU,Moscow,rpatel,,vpn01.acme.local,/remote/login,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,FAIL,brute_force_attempt,100,0
+2026-10-10T13:42:00,136.139.84.66,GB,London,rpatel,ACME-WKS-027,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,21342,24763
+2026-10-14T04:06:15,205.136.42.187,CN,Shenzhen,tgreen,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,194,0
+2026-10-14T04:03:45,205.136.42.187,CN,Shenzhen,administrator,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,291,0
+2026-10-12T10:29:00,123.3.180.77,CA,Toronto,tgreen,ACME-WKS-025,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,29460,17936
+2026-10-18T08:05:33,78.47.86.152,TR,Istanbul,,,fw-edge-01.acme.local,/dana-na/auth/url_default/welcome.cgi?p=1,curl/8.4.0,N/A,exploit_probe_bypass_attempt,1399,0
+2026-10-12T17:54:00,221.244.58.211,GB,London,jsmith,ACME-WKS-003,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,34227,2727
+2026-10-11T21:17:00,185.153.158.171,US,Chicago,palvarez,ACME-WKS-014,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,28371,23146
+2026-10-12T02:17:40,89.123.53.198,CN,Shenzhen,rpatel,,vpn01.acme.local,/remote/login,Go-http-client/1.1,FAIL,brute_force_attempt,168,0
+2026-10-11T17:21:00,200.83.159.28,US,Chicago,bmoore,ACME-WKS-019,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,22444,19167
+2026-10-12T02:02:40,192.220.89.34,RO,Bucharest,rpatel,,vpn01.acme.local,/remote/login,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,FAIL,brute_force_attempt,372,0
+2026-10-10T21:05:00,9.186.67.24,CA,Toronto,cjackson,ACME-WKS-010,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,29230,6055
+2026-10-18T08:12:57,94.23.205.14,VN,Hanoi,,,fw-edge-01.acme.local,/vpn/../vpns/cfg/smb.conf,curl/8.4.0,N/A,exploit_probe_bypass_attempt,792,0
+2026-10-10T15:56:00,12.162.242.181,CA,Toronto,palvarez,ACME-WKS-026,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,27302,22047
+2026-10-14T04:00:00,205.136.42.187,CN,Shenzhen,palvarez,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,120,0
+2026-10-14T04:01:30,205.136.42.187,CN,Shenzhen,bmoore,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,178,0
+2026-10-14T04:07:00,205.136.42.187,CN,Shenzhen,ktaylor,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,235,0
+2026-10-12T02:07:40,122.77.31.116,IN,Mumbai,rpatel,,vpn01.acme.local,/remote/login,python-requests/2.31.0,FAIL,brute_force_attempt,275,0
+2026-10-14T04:09:30,205.136.42.187,CN,Shenzhen,tgreen,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,154,0
+2026-10-18T08:06:47,198.135.107.197,TR,Istanbul,,,fw-edge-01.acme.local,/+CSCOE+/logon.html?reqtype=preLogin,python-requests/2.31.0,N/A,exploit_probe_bypass_attempt,1069,0
+2026-10-11T08:04:00,60.147.144.180,US,Chicago,ktaylor,ACME-WKS-028,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,6664,22824
+2026-10-14T04:02:00,205.136.42.187,CN,Shenzhen,palvarez,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,142,0
+2026-10-12T09:50:00,176.55.251.183,CA,Toronto,anovak,ACME-WKS-015,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,7294,10854
+2026-10-10T20:11:00,50.215.194.174,US,New York,swright,ACME-WKS-024,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,42338,18948
+2026-10-12T02:00:40,153.43.26.40,IN,Mumbai,rpatel,,vpn01.acme.local,/remote/login,curl/8.4.0,FAIL,brute_force_attempt,125,0
+2026-10-18T08:22:49,147.194.202.210,CN,Shenzhen,,,vpn02.acme.local,/api/v1/auth,curl/8.4.0,N/A,exploit_probe_bypass_attempt,644,0
+2026-10-12T02:10:40,36.79.39.76,IR,Tehran,rpatel,,vpn01.acme.local,/remote/login,python-requests/2.31.0,FAIL,brute_force_attempt,359,0
+2026-10-11T00:03:00,159.128.70.161,US,New York,lchen,ACME-WKS-004,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,44358,1591
+2026-10-14T04:09:45,205.136.42.187,CN,Shenzhen,vpnuser,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,173,0
+2026-10-18T08:27:08,186.19.89.107,PK,Karachi,,,vpn01.acme.local,/remote/login?lang=../../../../etc/passwd%00,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,N/A,exploit_probe_bypass_attempt,1663,0
+2026-10-10T22:45:00,220.82.168.106,US,Chicago,dwilson,ACME-WKS-023,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,20888,22011
+2026-10-12T02:07:00,213.146.39.166,BR,Sao Paulo,rpatel,,vpn01.acme.local,/remote/login,python-requests/2.31.0,FAIL,brute_force_attempt,359,0
+2026-10-14T04:06:00,205.136.42.187,CN,Shenzhen,ktaylor,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,273,0
+2026-10-10T15:56:00,202.101.217.30,GB,London,tgreen,ACME-WKS-018,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,44443,5182
+2026-10-11T20:19:00,36.23.19.78,US,Chicago,anovak,ACME-WKS-016,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,8369,7993
+2026-10-14T04:08:30,205.136.42.187,CN,Shenzhen,administrator,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,199,0
+2026-10-10T04:20:00,153.239.128.249,CA,Toronto,anovak,ACME-WKS-018,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,46583,23916
+2026-10-12T02:08:40,199.173.26.203,VN,Hanoi,rpatel,,vpn01.acme.local,/remote/login,Go-http-client/1.1,FAIL,brute_force_attempt,133,0
+2026-10-14T04:03:30,205.136.42.187,CN,Shenzhen,cjackson,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,193,0
+2026-10-14T04:02:45,205.136.42.187,CN,Shenzhen,user01,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,257,0
+2026-10-18T08:01:51,7.184.188.120,RO,Bucharest,,,fw-edge-01.acme.local,/dana-na/auth/url_default/welcome.cgi?p=1,python-requests/2.31.0,N/A,exploit_probe_bypass_attempt,184,0
+2026-10-11T00:13:00,88.143.141.143,GB,London,cjackson,ACME-WKS-001,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,14521,3105
+2026-10-12T17:40:00,117.154.101.99,GB,London,anovak,ACME-WKS-028,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,8989,8072
+2026-10-12T02:01:40,29.145.249.135,VN,Hanoi,rpatel,,vpn01.acme.local,/remote/login,Go-http-client/1.1,FAIL,brute_force_attempt,123,0
+2026-10-12T09:56:00,105.248.246.55,US,New York,lchen,ACME-WKS-028,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,5842,5694
+2026-10-12T02:18:20,47.69.32.184,TR,Istanbul,rpatel,,vpn01.acme.local,/remote/login,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,FAIL,brute_force_attempt,118,0
+2026-10-11T22:44:00,59.16.161.103,US,Chicago,dwilson,ACME-WKS-009,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,15826,18885
+2026-10-12T02:08:20,134.81.186.96,UA,Kyiv,rpatel,,vpn01.acme.local,/remote/login,Go-http-client/1.1,FAIL,brute_force_attempt,298,0
+2026-10-14T04:03:00,205.136.42.187,CN,Shenzhen,palvarez,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,170,0
+2026-10-12T02:16:00,204.234.32.29,TR,Istanbul,rpatel,,vpn01.acme.local,/remote/login,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,FAIL,brute_force_attempt,374,0
+2026-10-12T02:00:00,18.72.15.24,VN,Hanoi,rpatel,,vpn01.acme.local,/remote/login,curl/8.4.0,FAIL,brute_force_attempt,292,0
+2026-10-11T04:54:00,222.27.50.16,CA,Toronto,anovak,ACME-WKS-013,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,24236,26533
+2026-10-11T20:28:00,47.223.251.249,GB,London,fortiz,ACME-WKS-003,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,24803,13680
+2026-10-11T20:49:00,217.55.179.217,US,New York,fortiz,ACME-WKS-018,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,9529,25289
+2026-10-11T16:43:00,187.160.223.156,GB,London,anovak,ACME-WKS-017,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,27244,19193
+2026-10-12T02:09:00,25.197.145.65,BR,Sao Paulo,rpatel,,vpn01.acme.local,/remote/login,curl/8.4.0,FAIL,brute_force_attempt,270,0
+2026-10-12T11:49:00,55.255.202.227,GB,London,user01,ACME-WKS-021,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,11363,8979
+2026-10-18T08:00:37,75.153.80.183,UA,Kyiv,,,fw-edge-01.acme.local,/remote/login,curl/8.4.0,N/A,exploit_probe_bypass_attempt,1675,0
+2026-10-10T17:03:00,114.50.25.167,US,Chicago,palvarez,ACME-WKS-018,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,8112,24992
+2026-10-12T02:09:20,150.72.179.80,CN,Shenzhen,rpatel,,vpn01.acme.local,/remote/login,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,FAIL,brute_force_attempt,166,0
+2026-10-18T08:15:25,12.19.70.183,RU,Moscow,,,vpn02.acme.local,/api/v1/auth,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,N/A,exploit_probe_bypass_attempt,1113,0
+2026-10-12T16:11:00,94.220.35.243,US,New York,user01,ACME-WKS-022,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,42839,10586
+2026-10-12T02:01:00,21.139.226.170,TR,Istanbul,rpatel,,vpn01.acme.local,/remote/login,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,FAIL,brute_force_attempt,348,0
+2026-10-12T02:06:40,19.158.236.116,UA,Kyiv,rpatel,,vpn01.acme.local,/remote/login,python-requests/2.31.0,FAIL,brute_force_attempt,129,0
+2026-10-14T04:05:45,205.136.42.187,CN,Shenzhen,mgarcia,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,254,0
+2026-10-18T08:07:24,140.148.154.124,TR,Istanbul,,,vpn01.acme.local,/api/v1/auth,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,N/A,exploit_probe_bypass_attempt,659,0
+2026-10-12T02:18:00,91.173.89.213,RU,Moscow,rpatel,,vpn01.acme.local,/remote/login,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,FAIL,brute_force_attempt,345,0
+2026-10-18T08:10:29,209.167.160.49,KP,Pyongyang,,,vpn01.acme.local,/+CSCOE+/logon.html?reqtype=preLogin,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,N/A,exploit_probe_bypass_attempt,1071,0
+2026-10-11T00:54:00,91.107.136.180,GB,London,rpatel,ACME-WKS-022,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,6679,20260
+2026-10-12T02:10:20,80.92.109.88,BR,Sao Paulo,rpatel,,vpn01.acme.local,/remote/login,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,FAIL,brute_force_attempt,198,0
+2026-10-14T04:01:15,205.136.42.187,CN,Shenzhen,hkim,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,269,0
+2026-10-10T20:50:00,157.50.106.161,US,Chicago,bmoore,ACME-WKS-007,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,45281,2960
+2026-10-12T14:31:00,74.159.180.27,US,Chicago,user01,ACME-WKS-019,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,15942,5370
+2026-10-12T02:03:20,118.39.160.148,RU,Moscow,rpatel,,vpn01.acme.local,/remote/login,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,FAIL,brute_force_attempt,393,0
+2026-10-14T04:08:45,205.136.42.187,CN,Shenzhen,root,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,130,0
+2026-10-10T14:28:00,13.170.124.254,US,Chicago,hkim,ACME-WKS-005,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,15448,2548
+2026-10-18T08:11:06,128.11.46.242,NG,Lagos,,,vpn02.acme.local,/vpn/../vpns/cfg/smb.conf,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,N/A,exploit_probe_bypass_attempt,543,0
+2026-10-18T08:08:38,156.73.160.221,BR,Sao Paulo,,,fw-edge-01.acme.local,/remote/fgt_lang?lang=/../../../..//////////dev/cmd,Go-http-client/1.1,N/A,exploit_probe_bypass_attempt,866,0
+2026-10-14T04:08:00,205.136.42.187,CN,Shenzhen,lchen,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,106,0
+2026-10-12T06:05:00,127.18.64.129,US,New York,palvarez,ACME-WKS-019,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,8577,27990
+2026-10-11T04:54:00,12.1.170.198,GB,London,palvarez,ACME-WKS-005,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,19167,5594
+2026-10-11T12:01:00,55.102.159.103,CA,Toronto,palvarez,ACME-WKS-022,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,26472,14655
+2026-10-18T08:22:12,181.106.250.82,NG,Lagos,,,vpn02.acme.local,/remote/fgt_lang?lang=/../../../..//////////dev/cmd,Go-http-client/1.1,N/A,exploit_probe_bypass_attempt,639,0
+2026-10-10T21:59:00,114.109.242.204,CA,Toronto,fortiz,ACME-WKS-029,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,13120,21889
+2026-10-18T08:20:21,133.106.166.170,KP,Pyongyang,,,vpn02.acme.local,/vpn/../vpns/cfg/smb.conf,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,N/A,exploit_probe_bypass_attempt,692,0
+2026-10-10T02:27:00,150.75.220.33,GB,London,palvarez,ACME-WKS-002,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,25897,26387
+2026-10-12T13:54:00,22.219.69.222,US,Chicago,anovak,ACME-WKS-015,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,5295,8824
+2026-10-12T02:10:00,172.47.216.131,KP,Pyongyang,rpatel,,vpn01.acme.local,/remote/login,Go-http-client/1.1,FAIL,brute_force_attempt,109,0
+2026-10-12T02:03:40,182.213.148.30,VN,Hanoi,rpatel,,vpn01.acme.local,/remote/login,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,FAIL,brute_force_attempt,110,0
+2026-10-12T00:20:00,71.23.27.142,US,New York,swright,ACME-WKS-010,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,10275,21201
+2026-10-18T08:08:01,19.30.80.113,RO,Bucharest,,,vpn02.acme.local,/+CSCOE+/logon.html?reqtype=preLogin,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,N/A,exploit_probe_bypass_attempt,467,0
+2026-10-12T11:32:00,57.102.235.90,CA,Toronto,jsmith,ACME-WKS-010,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,16609,1075
+2026-10-11T21:08:00,21.119.51.98,GB,London,lchen,ACME-WKS-009,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,43660,27632
+2026-10-12T02:05:20,38.131.101.45,CN,Shenzhen,rpatel,,vpn01.acme.local,/remote/login,curl/8.4.0,FAIL,brute_force_attempt,138,0
+2026-10-18T08:06:10,185.172.21.212,IN,Mumbai,,,vpn01.acme.local,/remote/login?lang=../../../../etc/passwd%00,python-requests/2.31.0,N/A,exploit_probe_bypass_attempt,1992,0
+2026-10-10T05:47:00,24.120.158.58,GB,London,ktaylor,ACME-WKS-026,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,11656,1100
+2026-10-12T11:17:00,27.6.145.121,CA,Toronto,cjackson,ACME-WKS-016,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,24328,6341
+2026-10-10T16:28:00,126.123.243.166,CA,Toronto,user01,ACME-WKS-023,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,31371,26282
+2026-10-11T11:05:00,172.248.109.139,GB,London,lchen,ACME-WKS-005,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,39423,19181
+2026-10-14T04:05:30,205.136.42.187,CN,Shenzhen,cjackson,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,245,0
+2026-10-18T08:29:36,4.172.151.146,KP,Pyongyang,,,fw-edge-01.acme.local,/api/v1/auth,curl/8.4.0,N/A,exploit_probe_bypass_attempt,409,0
+2026-10-10T08:52:00,151.168.62.106,US,Chicago,swright,ACME-WKS-012,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,29717,28745
+2026-10-10T04:42:00,4.215.250.28,GB,London,swright,ACME-WKS-014,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,43653,27455
+2026-10-10T00:33:00,156.254.146.199,US,Chicago,bmoore,ACME-WKS-026,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,41784,26577
+2026-10-18T08:28:59,208.57.169.42,IR,Tehran,,,fw-edge-01.acme.local,/+CSCOE+/logon.html?reqtype=preLogin,Go-http-client/1.1,N/A,exploit_probe_bypass_attempt,1521,0
+2026-10-14T04:02:30,205.136.42.187,CN,Shenzhen,tgreen,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,110,0
+2026-10-12T02:04:00,44.235.185.23,BR,Sao Paulo,rpatel,,vpn01.acme.local,/remote/login,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,FAIL,brute_force_attempt,154,0
+2026-10-12T02:13:00,14.246.190.142,NG,Lagos,rpatel,,vpn01.acme.local,/remote/login,python-requests/2.31.0,FAIL,brute_force_attempt,364,0
+2026-10-12T15:40:00,131.139.212.214,GB,London,user01,ACME-WKS-016,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,17973,15267
+2026-10-12T01:02:00,127.204.124.38,CA,Toronto,user01,ACME-WKS-021,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,2363,24907
+2026-10-10T07:52:00,191.79.139.73,US,Chicago,tgreen,ACME-WKS-020,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,49029,11535
+2026-10-11T05:44:00,83.125.44.72,GB,London,palvarez,ACME-WKS-029,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,17981,24891
+2026-10-18T08:14:11,175.60.65.250,IN,Mumbai,,,vpn01.acme.local,/+CSCOE+/logon.html?reqtype=preLogin,Go-http-client/1.1,N/A,exploit_probe_bypass_attempt,1677,0
+2026-10-11T13:47:00,109.169.180.180,GB,London,swright,ACME-WKS-015,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,22094,8537
+2026-10-18T08:16:39,190.153.172.130,IN,Mumbai,,,fw-edge-01.acme.local,/vpn/../vpns/cfg/smb.conf,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,N/A,exploit_probe_bypass_attempt,1501,0
+2026-10-18T08:09:15,195.189.54.82,KP,Pyongyang,,,vpn01.acme.local,/+CSCOE+/logon.html?reqtype=preLogin,python-requests/2.31.0,N/A,exploit_probe_bypass_attempt,597,0
+2026-10-11T23:35:00,218.61.21.89,GB,London,cjackson,ACME-WKS-018,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,45353,12442
+2026-10-11T18:17:00,157.113.32.163,GB,London,tgreen,ACME-WKS-027,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,47945,10202
+2026-10-11T05:54:00,157.4.153.239,GB,London,palvarez,ACME-WKS-022,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,10800,8966
+2026-10-14T04:05:00,205.136.42.187,CN,Shenzhen,fortiz,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,299,0
+2026-10-16T06:12:00,35.37.231.45,IR,Tehran,lchen,,vpn01.acme.local,/remote/login,Go-http-client/1.1,SUCCESS,impossible_travel,50000,600
+2026-10-12T02:12:20,174.225.236.197,BR,Sao Paulo,rpatel,,vpn01.acme.local,/remote/login,Go-http-client/1.1,FAIL,brute_force_attempt,295,0
+2026-10-11T14:09:00,194.226.218.213,GB,London,bmoore,ACME-WKS-018,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,12430,24668
+2026-10-18T08:11:43,150.180.24.13,IR,Tehran,,,vpn02.acme.local,/+CSCOE+/logon.html?reqtype=preLogin,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,N/A,exploit_probe_bypass_attempt,635,0
+2026-10-12T03:38:00,195.26.104.69,CA,Toronto,fortiz,ACME-WKS-018,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,20876,14656
+2026-10-14T04:01:00,205.136.42.187,CN,Shenzhen,lchen,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,120,0
+2026-10-10T09:26:00,99.78.109.17,US,New York,rpatel,ACME-WKS-014,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,23684,18080
+2026-10-10T06:12:00,221.56.78.161,US,Chicago,cjackson,ACME-WKS-006,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,29666,19843
+2026-10-12T02:14:20,21.191.114.8,VN,Hanoi,rpatel,,vpn01.acme.local,/remote/login,Go-http-client/1.1,FAIL,brute_force_attempt,150,0
+2026-10-18T08:14:48,143.187.73.51,BR,Sao Paulo,,,fw-edge-01.acme.local,/vpn/../vpns/cfg/smb.conf,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,N/A,exploit_probe_bypass_attempt,1074,0
+2026-10-12T10:49:00,50.97.229.36,US,New York,mgarcia,ACME-WKS-014,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,20254,15459
+2026-10-12T02:19:20,92.24.169.70,NG,Lagos,rpatel,,vpn01.acme.local,/remote/login,python-requests/2.31.0,FAIL,brute_force_attempt,288,0
+2026-10-14T04:09:00,205.136.42.187,CN,Shenzhen,swright,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,298,0
+2026-10-10T16:19:00,20.146.120.70,CA,Toronto,ktaylor,ACME-WKS-011,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,37399,2940
+2026-10-11T01:56:00,217.176.135.207,GB,London,mgarcia,ACME-WKS-002,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,32108,17871
+2026-10-18T08:17:16,77.243.8.95,IN,Mumbai,,,vpn02.acme.local,/remote/login,python-requests/2.31.0,N/A,exploit_probe_bypass_attempt,903,0
+2026-10-12T02:16:40,91.123.213.48,IN,Mumbai,rpatel,,vpn01.acme.local,/remote/login,python-requests/2.31.0,FAIL,brute_force_attempt,368,0
+2026-10-14T04:04:00,205.136.42.187,CN,Shenzhen,dwilson,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,107,0
+2026-10-11T01:52:00,68.232.146.109,CA,Toronto,jsmith,ACME-WKS-023,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,38422,21988
+2026-10-18T08:30:13,220.207.218.132,IN,Mumbai,,,vpn02.acme.local,/remote/login?lang=../../../../etc/passwd%00,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,N/A,exploit_probe_bypass_attempt,1420,0
+2026-10-10T15:18:00,200.20.15.244,US,Chicago,hkim,ACME-WKS-008,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,3335,20659
+2026-10-18T08:03:42,164.93.66.111,UA,Kyiv,,,fw-edge-01.acme.local,/api/v1/auth,python-requests/2.31.0,N/A,exploit_probe_bypass_attempt,1752,0
+2026-10-14T04:00:30,205.136.42.187,CN,Shenzhen,dwilson,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,239,0
+2026-10-10T16:26:00,60.236.130.118,US,New York,fortiz,ACME-WKS-009,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,2615,26666
+2026-10-11T07:48:00,53.215.199.232,US,Chicago,anovak,ACME-WKS-025,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,47581,940
+2026-10-10T03:25:00,218.62.233.35,US,New York,swright,ACME-WKS-026,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,45750,17704
+2026-10-12T02:14:40,167.171.74.36,PK,Karachi,rpatel,,vpn01.acme.local,/remote/login,python-requests/2.31.0,FAIL,brute_force_attempt,246,0
+2026-10-18T08:23:26,74.40.177.237,RU,Moscow,,,vpn02.acme.local,/remote/login,Go-http-client/1.1,N/A,exploit_probe_bypass_attempt,1580,0
+2026-10-14T04:00:45,205.136.42.187,CN,Shenzhen,bmoore,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,182,0
+2026-10-10T07:26:00,158.22.154.118,US,New York,fortiz,ACME-WKS-021,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,5986,15995
+2026-10-18T08:04:56,73.40.128.51,UA,Kyiv,,,fw-edge-01.acme.local,/vpn/../vpns/cfg/smb.conf,Go-http-client/1.1,N/A,exploit_probe_bypass_attempt,306,0
+2026-10-14T04:04:30,205.136.42.187,CN,Shenzhen,tgreen,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,108,0
+2026-10-18T08:01:14,131.114.62.253,BR,Sao Paulo,,,vpn01.acme.local,/api/v1/auth,curl/8.4.0,N/A,exploit_probe_bypass_attempt,534,0
+2026-10-14T04:03:15,205.136.42.187,CN,Shenzhen,mgarcia,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,119,0
+2026-10-14T04:02:15,205.136.42.187,CN,Shenzhen,tgreen,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,189,0
+2026-10-18T08:03:05,165.37.230.120,BR,Sao Paulo,,,fw-edge-01.acme.local,/vpn/../vpns/cfg/smb.conf,Go-http-client/1.1,N/A,exploit_probe_bypass_attempt,312,0
+2026-10-11T04:37:00,67.104.160.62,GB,London,hkim,ACME-WKS-009,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,10577,22309
+2026-10-12T08:38:00,151.110.119.85,US,New York,cjackson,ACME-WKS-025,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,41058,392
+2026-10-12T16:31:00,117.45.161.65,US,Chicago,anovak,ACME-WKS-011,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,28488,28641
+2026-10-11T00:27:00,151.165.8.45,US,New York,cjackson,ACME-WKS-009,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,10307,24604
+2026-10-11T21:03:00,85.142.35.248,CA,Toronto,lchen,ACME-WKS-025,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,25012,21320
+2026-10-12T03:03:00,13.244.80.15,US,Chicago,dwilson,ACME-WKS-017,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,14178,2545
+2026-10-11T04:24:00,199.194.230.233,US,New York,bmoore,ACME-WKS-015,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,40569,14351
+2026-10-12T02:05:40,198.252.237.194,KP,Pyongyang,rpatel,,vpn01.acme.local,/remote/login,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,FAIL,brute_force_attempt,389,0
+2026-10-12T02:17:00,18.10.199.224,BR,Sao Paulo,rpatel,,vpn01.acme.local,/remote/login,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,FAIL,brute_force_attempt,122,0
+2026-10-12T02:20:20,178.254.188.237,RU,Moscow,rpatel,ACME-WKS-003,vpn01.acme.local,/remote/login,python-requests/2.31.0,SUCCESS,brute_force_success,120000,5400
+2026-10-12T02:06:20,114.155.140.152,RO,Bucharest,rpatel,,vpn01.acme.local,/remote/login,python-requests/2.31.0,FAIL,brute_force_attempt,280,0
+2026-10-14T04:09:15,205.136.42.187,CN,Shenzhen,swright,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,280,0
+2026-10-12T13:24:00,31.126.115.17,CA,Toronto,swright,ACME-WKS-011,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,40555,18450
+2026-10-12T02:14:00,7.212.27.102,BR,Sao Paulo,rpatel,,vpn01.acme.local,/remote/login,Go-http-client/1.1,FAIL,brute_force_attempt,220,0
+2026-10-11T05:53:00,111.165.128.7,US,Chicago,mgarcia,ACME-WKS-003,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,46190,27692
+2026-10-14T04:07:15,205.136.42.187,CN,Shenzhen,user01,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,201,0
+2026-10-12T10:44:00,196.137.20.196,US,Chicago,bmoore,ACME-WKS-025,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,32834,17305
+2026-10-11T05:58:00,177.155.206.242,CA,Toronto,mgarcia,ACME-WKS-009,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,37388,16480
+2026-10-11T10:39:00,73.152.250.222,US,Chicago,ktaylor,ACME-WKS-005,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,37296,16170
+2026-10-18T08:27:45,48.148.19.3,RO,Bucharest,,,vpn02.acme.local,/vpn/../vpns/cfg/smb.conf,python-requests/2.31.0,N/A,exploit_probe_bypass_attempt,1951,0
+2026-10-12T02:12:00,137.122.158.248,IR,Tehran,rpatel,,vpn01.acme.local,/remote/login,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,FAIL,brute_force_attempt,199,0
+2026-10-12T02:04:40,86.86.39.131,IR,Tehran,rpatel,,vpn01.acme.local,/remote/login,python-requests/2.31.0,FAIL,brute_force_attempt,371,0
+2026-10-12T02:17:20,100.191.129.192,TR,Istanbul,rpatel,,vpn01.acme.local,/remote/login,python-requests/2.31.0,FAIL,brute_force_attempt,282,0
+2026-10-11T12:42:00,34.178.35.226,GB,London,lchen,ACME-WKS-008,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,20676,5469
+2026-10-18T08:25:17,14.51.211.85,IR,Tehran,,,fw-edge-01.acme.local,/+CSCOE+/logon.html?reqtype=preLogin,python-requests/2.31.0,N/A,exploit_probe_bypass_attempt,1445,0
+2026-10-11T10:46:00,8.59.133.46,GB,London,anovak,ACME-WKS-019,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,4507,3852
+2026-10-11T13:42:00,58.58.236.243,US,Chicago,anovak,ACME-WKS-004,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,12090,16630
+2026-10-11T22:14:00,102.101.38.152,CA,Toronto,tgreen,ACME-WKS-023,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,17915,3639
+2026-10-11T19:20:00,42.236.194.70,US,New York,rpatel,ACME-WKS-021,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,38500,7496
+2026-10-18T08:19:44,106.104.210.129,KP,Pyongyang,,,fw-edge-01.acme.local,/+CSCOE+/logon.html?reqtype=preLogin,python-requests/2.31.0,N/A,exploit_probe_bypass_attempt,1495,0
+2026-10-12T15:25:00,62.29.123.225,GB,London,dwilson,ACME-WKS-019,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,7613,24283
+2026-10-12T17:06:00,129.91.54.223,GB,London,user01,ACME-WKS-021,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,43874,16935
+2026-10-11T04:44:00,191.32.243.115,US,Chicago,swright,ACME-WKS-025,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,35635,19753
+2026-10-11T17:34:00,96.82.0.154,US,New York,lchen,ACME-WKS-011,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,3276,3965
+2026-10-12T02:09:40,182.43.158.144,IN,Mumbai,rpatel,,vpn01.acme.local,/remote/login,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,FAIL,brute_force_attempt,268,0
+2026-10-11T15:23:00,39.76.155.22,US,Chicago,hkim,ACME-WKS-008,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,38573,25349
+2026-10-10T23:33:00,117.164.96.252,CA,Toronto,dwilson,ACME-WKS-023,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,39473,12849
+2026-10-10T09:31:00,192.219.204.93,GB,London,lchen,ACME-WKS-008,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,35392,16471
+2026-10-11T09:10:00,195.64.65.169,US,Chicago,palvarez,ACME-WKS-016,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,12821,8985
+2026-10-10T19:01:00,207.219.13.156,US,New York,bmoore,ACME-WKS-022,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,19527,1248
+2026-10-10T03:09:00,157.37.233.107,CA,Toronto,lchen,ACME-WKS-029,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,39727,6671
+2026-10-12T02:13:20,73.42.82.70,CN,Shenzhen,rpatel,,vpn01.acme.local,/remote/login,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,FAIL,brute_force_attempt,362,0
+2026-10-11T19:39:00,190.140.125.58,US,Chicago,mgarcia,ACME-WKS-005,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,8717,22474
+2026-10-12T02:19:40,103.225.197.87,VN,Hanoi,rpatel,,vpn01.acme.local,/remote/login,curl/8.4.0,FAIL,brute_force_attempt,354,0
+2026-10-12T03:01:00,125.112.139.112,US,New York,user01,ACME-WKS-016,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,27484,11314
+2026-10-11T11:07:00,169.236.211.14,US,Chicago,palvarez,ACME-WKS-007,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,25709,20702
+2026-10-18T08:21:35,50.126.142.143,RO,Bucharest,,,vpn02.acme.local,/dana-na/auth/url_default/welcome.cgi?p=1,Go-http-client/1.1,N/A,exploit_probe_bypass_attempt,1629,0
+2026-10-18T08:04:19,133.78.155.43,CN,Shenzhen,,,vpn01.acme.local,/remote/fgt_lang?lang=/../../../..//////////dev/cmd,curl/8.4.0,N/A,exploit_probe_bypass_attempt,758,0
+2026-10-18T08:09:52,64.72.49.13,RO,Bucharest,,,vpn02.acme.local,/+CSCOE+/logon.html?reqtype=preLogin,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,N/A,exploit_probe_bypass_attempt,558,0
+2026-10-12T02:18:40,52.22.102.227,NG,Lagos,rpatel,,vpn01.acme.local,/remote/login,python-requests/2.31.0,FAIL,brute_force_attempt,261,0
+2026-10-12T02:07:20,119.21.230.233,VN,Hanoi,rpatel,,vpn01.acme.local,/remote/login,curl/8.4.0,FAIL,brute_force_attempt,264,0
+2026-10-11T07:45:00,174.80.37.114,GB,London,tgreen,ACME-WKS-012,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,21605,21236
+2026-10-12T08:29:00,107.48.160.110,CA,Toronto,fortiz,ACME-WKS-011,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,18704,12565
+2026-10-18T08:17:53,79.13.242.68,IN,Mumbai,,,fw-edge-01.acme.local,/api/v1/auth,curl/8.4.0,N/A,exploit_probe_bypass_attempt,1527,0
+2026-10-12T17:05:00,18.46.43.24,CA,Toronto,rpatel,ACME-WKS-014,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,26421,26900
+2026-10-14T04:06:30,205.136.42.187,CN,Shenzhen,user01,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,213,0
+2026-10-11T13:37:00,49.69.35.71,CA,Toronto,rpatel,ACME-WKS-025,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,24274,26111
+2026-10-11T16:05:00,107.50.250.158,US,New York,user01,ACME-WKS-014,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,4144,22919
+2026-10-11T20:03:00,81.37.4.118,CA,Toronto,ktaylor,ACME-WKS-020,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,8552,2700
+2026-10-11T14:38:00,44.89.40.157,US,New York,hkim,ACME-WKS-028,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,42613,22684
+2026-10-10T07:49:00,197.174.57.76,GB,London,hkim,ACME-WKS-014,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,31735,406
+2026-10-18T08:16:02,39.71.167.239,RO,Bucharest,,,fw-edge-01.acme.local,/remote/fgt_lang?lang=/../../../..//////////dev/cmd,curl/8.4.0,N/A,exploit_probe_bypass_attempt,854,0
+2026-10-12T02:58:00,26.51.227.43,CA,Toronto,mgarcia,ACME-WKS-023,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,3897,1807
+2026-10-12T12:34:00,100.232.189.172,US,New York,swright,ACME-WKS-024,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,37402,14033
+2026-10-14T04:04:45,205.136.42.187,CN,Shenzhen,ktaylor,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,117,0
+2026-10-11T08:16:00,207.208.97.25,CA,Toronto,lchen,ACME-WKS-004,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,30249,11909
+2026-10-12T11:25:00,120.38.72.194,US,Chicago,dwilson,ACME-WKS-008,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,49462,22398
+2026-10-10T12:18:00,87.179.3.47,GB,London,ktaylor,ACME-WKS-028,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,39114,21839
+2026-10-12T02:11:00,214.19.172.225,UA,Kyiv,rpatel,,vpn01.acme.local,/remote/login,curl/8.4.0,FAIL,brute_force_attempt,292,0
+2026-10-10T20:32:00,78.146.107.111,US,Chicago,anovak,ACME-WKS-026,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,41758,21753
+2026-10-12T02:08:00,22.88.20.64,PK,Karachi,rpatel,,vpn01.acme.local,/remote/login,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,FAIL,brute_force_attempt,324,0
+2026-10-12T01:02:00,49.151.111.248,US,New York,fortiz,ACME-WKS-002,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,37533,2297
+2026-10-18T08:12:20,3.55.220.35,UA,Kyiv,,,vpn02.acme.local,/remote/login,Go-http-client/1.1,N/A,exploit_probe_bypass_attempt,1614,0
+2026-10-18T08:20:58,118.175.181.174,KP,Pyongyang,,,fw-edge-01.acme.local,/remote/login,Go-http-client/1.1,N/A,exploit_probe_bypass_attempt,1299,0
+2026-10-14T04:01:45,205.136.42.187,CN,Shenzhen,tgreen,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,254,0
+2026-10-10T15:44:00,81.61.94.50,US,New York,mgarcia,ACME-WKS-007,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,33732,9360
+2026-10-12T18:28:00,61.83.90.226,US,New York,bmoore,ACME-WKS-014,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,13754,24435
+2026-10-11T07:23:00,112.90.138.158,US,New York,user01,ACME-WKS-026,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,33686,15532
+2026-10-12T12:07:00,32.14.122.182,CA,Toronto,user01,ACME-WKS-006,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,38099,748
+2026-10-18T08:19:07,63.16.56.49,TR,Istanbul,,,vpn01.acme.local,/+CSCOE+/logon.html?reqtype=preLogin,Go-http-client/1.1,N/A,exploit_probe_bypass_attempt,907,0
+2026-10-12T10:44:00,200.217.112.46,US,Chicago,cjackson,ACME-WKS-026,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,35944,15522
+2026-10-12T02:36:00,144.4.57.20,CA,Toronto,fortiz,ACME-WKS-029,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,11768,18177
+2026-10-12T02:11:40,94.121.227.157,VN,Hanoi,rpatel,,vpn01.acme.local,/remote/login,Go-http-client/1.1,FAIL,brute_force_attempt,329,0
+2026-10-18T08:24:03,55.103.138.239,RO,Bucharest,,,fw-edge-01.acme.local,/remote/login,Go-http-client/1.1,N/A,exploit_probe_bypass_attempt,331,0
+2026-10-12T18:22:00,92.107.127.171,US,Chicago,palvarez,ACME-WKS-004,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,38692,13616
+2026-10-11T03:07:00,24.202.7.68,GB,London,palvarez,ACME-WKS-018,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,31804,12377
+2026-10-11T06:03:00,4.73.209.223,CA,Toronto,mgarcia,ACME-WKS-021,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,6903,15684
+2026-10-14T04:07:30,205.136.42.187,CN,Shenzhen,hkim,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,266,0
+2026-10-14T04:00:15,205.136.42.187,CN,Shenzhen,palvarez,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,254,0
+2026-10-12T02:13:40,213.223.46.243,KP,Pyongyang,rpatel,,vpn01.acme.local,/remote/login,curl/8.4.0,FAIL,brute_force_attempt,330,0
+2026-10-14T04:05:15,205.136.42.187,CN,Shenzhen,user01,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,192,0
+2026-10-11T07:43:00,87.14.253.218,CA,Toronto,bmoore,ACME-WKS-011,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,33952,7250
+2026-10-18T08:28:22,73.232.252.228,BR,Sao Paulo,,,vpn01.acme.local,/api/v1/auth,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,N/A,exploit_probe_bypass_attempt,608,0
+2026-10-11T01:52:00,117.167.172.195,US,New York,dwilson,ACME-WKS-029,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,20235,24941
+2026-10-12T05:21:00,160.203.41.219,GB,London,ktaylor,ACME-WKS-011,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,36971,12752
+2026-10-12T17:08:00,139.18.35.61,CA,Toronto,dwilson,ACME-WKS-021,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,20833,7754
+2026-10-12T02:12:40,136.214.82.210,UA,Kyiv,rpatel,,vpn01.acme.local,/remote/login,curl/8.4.0,FAIL,brute_force_attempt,170,0
+2026-10-12T02:00:20,117.174.80.95,VN,Hanoi,rpatel,,vpn01.acme.local,/remote/login,Go-http-client/1.1,FAIL,brute_force_attempt,266,0
+2026-10-18T08:18:30,150.245.87.135,RU,Moscow,,,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,N/A,exploit_probe_bypass_attempt,352,0
+2026-10-12T02:03:00,59.181.36.102,PK,Karachi,rpatel,,vpn01.acme.local,/remote/login,python-requests/2.31.0,FAIL,brute_force_attempt,323,0
+2026-10-18T08:02:28,102.245.210.197,NG,Lagos,,,vpn02.acme.local,/api/v1/auth,python-requests/2.31.0,N/A,exploit_probe_bypass_attempt,306,0
+2026-10-12T02:19:00,132.203.242.65,NG,Lagos,rpatel,,vpn01.acme.local,/remote/login,python-requests/2.31.0,FAIL,brute_force_attempt,197,0
+2026-10-10T01:10:00,57.207.124.79,GB,London,mgarcia,ACME-WKS-022,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,26184,15807
+2026-10-12T02:02:20,196.130.148.84,KP,Pyongyang,rpatel,,vpn01.acme.local,/remote/login,python-requests/2.31.0,FAIL,brute_force_attempt,103,0
+2026-10-14T04:06:45,205.136.42.187,CN,Shenzhen,rpatel,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,246,0
+2026-10-12T10:48:00,67.126.141.197,CA,Toronto,fortiz,ACME-WKS-025,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,33758,20837
+2026-10-11T16:37:00,104.61.126.149,US,New York,mgarcia,ACME-WKS-020,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,42591,2986
+2026-10-18T08:24:40,158.122.124.13,CN,Shenzhen,,,fw-edge-01.acme.local,/vpn/../vpns/cfg/smb.conf,curl/8.4.0,N/A,exploit_probe_bypass_attempt,1356,0
+2026-10-12T02:11:20,42.92.84.185,KP,Pyongyang,rpatel,,vpn01.acme.local,/remote/login,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,FAIL,brute_force_attempt,122,0
+2026-10-18T08:25:54,2.80.208.168,KP,Pyongyang,,,vpn02.acme.local,/+CSCOE+/logon.html?reqtype=preLogin,curl/8.4.0,N/A,exploit_probe_bypass_attempt,1598,0
+2026-10-10T08:31:00,21.150.185.148,CA,Toronto,tgreen,ACME-WKS-007,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,6558,1801
+2026-10-12T02:01:20,114.212.139.56,IN,Mumbai,rpatel,,vpn01.acme.local,/remote/login,python-requests/2.31.0,FAIL,brute_force_attempt,276,0
+2026-10-12T02:06:00,163.165.161.39,TR,Istanbul,rpatel,,vpn01.acme.local,/remote/login,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,FAIL,brute_force_attempt,134,0
+2026-10-10T18:55:00,34.128.89.29,US,New York,palvarez,ACME-WKS-022,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,10637,786
+2026-10-14T04:04:15,205.136.42.187,CN,Shenzhen,ktaylor,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,255,0
+2026-10-11T02:02:00,148.151.151.6,GB,London,bmoore,ACME-WKS-027,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,27939,9294
+2026-10-12T02:15:20,66.110.76.141,RU,Moscow,rpatel,,vpn01.acme.local,/remote/login,Mozilla/5.0 (X11; Linux x86_64) sqlmap/1.7,FAIL,brute_force_attempt,156,0
+2026-10-11T00:29:00,71.97.62.243,CA,Toronto,jsmith,ACME-WKS-028,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,8007,22017
+2026-10-12T07:00:00,88.142.79.56,CA,Toronto,rpatel,ACME-WKS-025,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,8698,3339
+2026-10-11T21:55:00,150.195.190.28,GB,London,user01,ACME-WKS-022,vpn01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,32898,1120
+2026-10-12T02:05:00,50.178.179.187,UA,Kyiv,rpatel,,vpn01.acme.local,/remote/login,curl/8.4.0,FAIL,brute_force_attempt,220,0
+2026-10-14T04:08:15,205.136.42.187,CN,Shenzhen,dwilson,,vpn02.acme.local,/remote/login,curl/8.4.0,FAIL,credential_stuffing,227,0
+2026-10-10T10:24:00,122.58.111.120,US,New York,lchen,ACME-WKS-023,vpn02.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,26175,5798
+2026-10-12T14:00:00,19.30.84.203,US,New York,ktaylor,ACME-WKS-010,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,39303,9757
+2026-10-10T12:58:00,182.223.0.134,US,Chicago,ktaylor,ACME-WKS-026,fw-edge-01.acme.local,/remote/login,Mozilla/5.0 (Windows NT 10.0; Win64; x64),SUCCESS,normal_login,47013,23874

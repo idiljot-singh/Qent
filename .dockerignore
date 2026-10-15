@@ -1,0 +1,14 @@
+gemini_key.txt
+*.xlsx
+*.db
+*.docx
+*.md
+*.ps1
+design-system
+__pycache__
+.git
+.env
+video
+.log_key
+*.csv
+samples

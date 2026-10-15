@@ -1,0 +1,11 @@
+# Secrets and local data: never publish
+.env
+.log_key
+gemini_key.txt
+misp_cert.pem
+*.pem
+*.db
+*.db-*
+collected_auto.xlsx
+__pycache__/
+*.pyc

