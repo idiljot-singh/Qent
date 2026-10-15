@@ -25,6 +25,26 @@ Priority intelligence requirements (PIRs) in, evidence-backed answers out: exter
 
 <sub>Screenshots use the bundled demo PIRs and the synthetic logs in `samples/`. No real data.</sub>
 
+## Diagrams
+
+**How Qent works**
+
+![How Qent works](docs/diagrams/architecture.svg)
+
+**From feed item to PIR status**
+
+![From feed item to PIR status](docs/diagrams/pir-status.svg)
+
+**Internal log privacy and sharing**
+
+![Internal log privacy and sharing](docs/diagrams/log-privacy.svg)
+
+**Future cloud production (Azure, EU)**
+
+![Future cloud production (Azure, EU)](docs/diagrams/cloud-production.svg)
+
+All four on one page: [docs/diagrams.html](https://idiljot-singh.github.io/Qent/diagrams.html).
+
 ## Try it in 2 minutes
 
 ```
@@ -47,7 +67,7 @@ Demo path for a presentation:
 | PIR-02 | Which vulnerabilities in widely deployed edge and enterprise products (VPNs, firewalls, gateways, load balancers, mail servers, operating systems) are exploited now, and which need patching within a day? | tactical |
 | PIR-03 | Which ransomware and extortion groups, and which entry methods, are most active against organisations like ours, and what do they reach first? | strategic |
 | PIR-04 | Which state-aligned and espionage actors target our sector and its supply chain, and through which suppliers or partners? | strategic |
-| PIR-05 | Which staff actions (USB or personal-cloud copies, untrusted installers) put company data at risk, and by which routes does it leave? | tactical |
+| PIR-05 | Which new malware families, loaders and attacker techniques are emerging that our detections and hardening should cover? | tactical |
 
 Each PIR carries 20+ keywords so collection is broad. Replace them with your own in the **Requirements** tab (New PIR, with keyword suggestions), or edit `pir_workbook.xlsx` before the first start.
 

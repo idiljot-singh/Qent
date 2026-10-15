@@ -2,6 +2,8 @@
 
 How Qent turns "too many threat reports" into "this PIR is supported by two independent sources", and how your own logs add evidence nobody else has. Everything below uses the bundled general demo PIRs and the synthetic logs in `samples/`.
 
+Diagrams: [how it works](docs/diagrams/architecture.svg), [item to status](docs/diagrams/pir-status.svg), [log privacy](docs/diagrams/log-privacy.svg), [cloud production](docs/diagrams/cloud-production.svg).
+
 ## 1. The problem
 
 A security team gets hundreds of advisories, vendor blogs and feeds a week. Without written priority intelligence requirements (PIRs) nobody can say which reports matter, whether a question has really been answered, or whether collection is even working. Qent starts from the questions and works backwards.
@@ -38,7 +40,7 @@ Your logs -> Findings -> Sightings (vs feeds + MISP) -> Share (STIX / CSV / TAXI
 | PIR-02 | Exploited vulnerabilities in widely deployed edge and enterprise products |
 | PIR-03 | Ransomware and extortion groups and their entry methods |
 | PIR-04 | State-aligned actors targeting our sector and supply chain |
-| PIR-05 | Staff actions that put company data at risk |
+| PIR-05 | New malware, loaders and techniques our detections should cover |
 
 **Sources** (Sources tab) are RSS feeds, CISA KEV, abuse.ch Feodo and MISP. Each is *tasked* to the PIRs it can help with and carries a reliability grade. **Collect now** (or `python qent.py collect` on a schedule) fetches them in parallel with size caps and a public-address check, so a feed cannot point Qent at your internal network.
 
