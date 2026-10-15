@@ -15,7 +15,8 @@ A security team gets hundreds of advisories, vendor blogs and feeds a week. With
 | **PIR** | Priority intelligence requirement: a question the business needs answered, with the decision it supports |
 | **Source reliability** | A to F grade of a feed (CISA KEV is A, a vendor blog is C) |
 | **Item** | One feed entry that matched a PIR's keywords |
-| **Indicator** | CVE, IP, hash, URL, domain, ATT&CK technique or actor / malware name extracted from an item |
+| **IoC** | A malicious IP, hash, URL or domain: defanged by the article, listed under its IoC heading, or from a threat feed / MISP |
+| **Context** | CVEs, ATT&CK techniques and actor / malware names found in an item. Shown beside IoCs but never counted as IoCs |
 | **Status** | OPEN, PARTIAL, SUPPORTED or ANSWERED (section 5) |
 | **Finding** | A deterministic detection in your own logs (section 6) |
 | **Sighting** | An indicator seen in your logs that is also known to a feed or your MISP |
@@ -25,7 +26,7 @@ A security team gets hundreds of advisories, vendor blogs and feeds a week. With
 
 ```
 PIRs  ->  Collect  ->  Match  ->  Extract  ->  Assess  ->  Answer
-(questions) (feeds)   (keywords)  (indicators)  (status)   (analyst)
+(questions) (feeds)   (keywords)  (IoCs)  (status)   (analyst)
 
 Your logs -> Findings -> Sightings (vs feeds + MISP) -> Share (STIX / CSV / TAXII / MISP)
 ```
@@ -47,7 +48,7 @@ Your logs -> Findings -> Sightings (vs feeds + MISP) -> Share (STIX / CSV / TAXI
 ## 5. Matching, assessment and status
 
 1. **Match.** An item is kept for a PIR only if its source is tasked to that PIR, it is newer than 30 days, and one of the PIR's keywords hits at a word start (`entra` does not hit `central`).
-2. **Extract.** Regular expressions pull CVEs, IPs, hashes, URLs, domains, ATT&CK techniques and actor / malware names. Defanged forms (`hxxp`, `[.]`) are understood.
+2. **Extract.** Only malicious indicators become IoCs: a value the writer defanged (`hxxp`, `1[.]2[.]3[.]4`), a plain IP or hash under the article's own "Indicators of Compromise" heading, or an entry from a threat feed (Feodo) or MISP. Plain links, vendor sites and public resolvers are dropped. CVEs, ATT&CK techniques and actors are kept as context.
 3. **Score.** Each item scores keyword hits (max 3) + context match for your estate (`ORG_CONTEXT`, default Microsoft 365, VPN, supply chain, ...) + source reliability + analyst verdict.
 4. **Status** per PIR:
 

@@ -70,7 +70,7 @@ footer{padding:34px 0;color:var(--mute);font-size:14px;border-top:1px solid var(
 <div class="flow"><span>PIRs</span><i>→</i><span>Collect</span><i>→</i><span>Match</span><i>→</i><span>Extract</span><i>→</i><span>Assess</span><i>→</i><span>Answer</span></div>
 <div class="grid">
 <div class="card"><h3>Match</h3><p>An item is kept only for a PIR its source is tasked to and whose keywords it hits, newer than 30 days.</p></div>
-<div class="card"><h3>Extract</h3><p>CVEs, IPs, hashes, URLs, domains, ATT&amp;CK techniques and actors, defanged forms included.</p></div>
+<div class="card"><h3>Extract</h3><p>Only malicious IoCs (defanged, from an IoC list or a threat feed) plus CVE, ATT&amp;CK and actor context.</p></div>
 <div class="card"><h3>Grade</h3><p>Sources graded A to F. Confidence is the number of independent sources, never a guess.</p></div>
 <div class="card"><h3>Answer</h3><p>OPEN, PARTIAL, SUPPORTED (2+ sources and a strong item), ANSWERED (analyst confirmed).</p></div>
 </div>

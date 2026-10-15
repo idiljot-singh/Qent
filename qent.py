@@ -205,6 +205,7 @@ table.mx{border-collapse:separate;border-spacing:4px;width:100%;font:13px var(--
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:14px}
 .tile{padding:12px 14px;border:1px solid var(--line);border-radius:var(--r2);background:var(--glass);cursor:pointer;text-align:left;transition:border-color .2s,transform .2s}
 .tile:hover{transform:translateY(-2px)}
+.tilelbl{margin:6px 0;font:600 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
 .tile b{display:block;font:400 28px var(--head)}.tile span{font:600 11px var(--mono);color:var(--mute);text-transform:uppercase;letter-spacing:.08em}
 .tile[aria-pressed=true]{border-color:var(--mint);background:var(--glass2)}
 .how{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:14px;font-size:14px;color:var(--mute)}
@@ -1109,20 +1110,24 @@ DOM_RE = re.compile(r"\b(?:[a-z0-9-]+(?:\[\.\]|\(\.\))+)+[a-z]{2,}\b", re.I)
 CVE_RE = re.compile(r"\bCVE-\d{4}-\d{4,7}\b", re.I)
 TTP_RE = re.compile(r"\bT1\d{3}(?:\.\d{3})?\b")
 ITYPES = ["cve", "ip", "hash", "url", "domain", "ttp", "actor"]
+IOC_TYPES = ("ip", "hash", "url", "domain")  # only these can be indicators of compromise; the rest is context
+BENIGN = {"microsoft.com", "google.com", "github.com", "virustotal.com", "mitre.org", "nist.gov", "cisa.gov", "8.8.8.8", "8.8.4.4", "1.1.1.1", "9.9.9.9"}  # ponytail: tiny allowlist of well-known good values; grow it if a legitimate one slips through
 INAME = {"cve": "CVE", "ip": "IP", "hash": "Hash", "url": "URL", "domain": "Domain", "ttp": "ATT&CK", "actor": "Actor / malware"}
 
 
-def extract(text):
-    """Yield (type, value) indicators found in free text. Values are refanged; defanged forms are accepted.
-    ponytail: regex only, so a dotted version number like 2.1.0.3 can pass as an IP; add an allowlist if it shows up."""
+def extract(text, plain=False):
+    """Yield (type, value) found in free text. Values are refanged. Only malicious-looking IoCs: an IP counts when the writer defanged it
+    (1[.]2[.]3[.]4), a hash only when plain=True (the caller knows the text is an IoC list). Plain addresses in prose are usually working services.
+    ponytail: regex only, so a dotted version number like 2.1.0.3 can pass as an IP in plain mode."""
     for m in CVE_RE.findall(text):
         yield "cve", m.upper()
-    for g in IP_RE.findall(text):
-        o = [int(x) for x in g]
-        if all(x <= 255 for x in o) and o[0] not in (0, 10, 127) and not (o[0] == 192 and o[1] == 168) and not (o[0] == 172 and 16 <= o[1] <= 31):
+    for m in IP_RE.finditer(text):
+        o = [int(x) for x in m.groups()]
+        if (plain or "[" in m.group(0) or "(" in m.group(0)) and all(x <= 255 for x in o) and o[0] not in (0, 10, 127) and not (o[0] == 192 and o[1] == 168) and not (o[0] == 172 and 16 <= o[1] <= 31):
             yield "ip", ".".join(map(str, o))
-    for m in HASH_RE.findall(text):
-        yield "hash", m.lower()
+    if plain:
+        for m in HASH_RE.findall(text):
+            yield "hash", m.lower()
     for m in URL_RE.findall(text):
         yield "url", re.sub(r"^hxxp", "http", m, flags=re.I).replace("[.]", ".").replace("(.)", ".")
     for m in DOM_RE.findall(text):
@@ -1143,6 +1148,16 @@ def pivot(t, v):
             "ttp": "https://attack.mitre.org/techniques/" + v.replace(".", "/") + "/"}.get(t, "")
 
 
+def n_ioc(inds):
+    return sum(d["type"] in IOC_TYPES for d in inds)
+
+
+def benign(v):
+    """Well-known good value: the host of a URL or a domain equals or sits under a BENIGN entry."""
+    h = re.sub(r"^https?://|[/:].*$", "", v)
+    return any(h == b or h.endswith("." + b) for b in BENIGN)
+
+
 def indicators(res):
     """Aggregate indicators over every collected item: (type, value) -> count, sources, PIRs, first seen."""
     out = {}
@@ -1151,6 +1166,8 @@ def indicators(res):
             found = set(extract(f'{i.get("title") or ""} {i.get("summary") or ""}'))
             found |= {tuple(tok.split(":", 1)) for tok in str(i.get("iocs") or "").split() if tok.split(":", 1)[0] in ITYPES and ":" in tok}
             for t, v in found:
+                if t in IOC_TYPES and benign(v):
+                    continue
                 d = out.setdefault((t, v), {"type": t, "value": v, "refs": set(), "src": set(), "pirs": set(), "first": "9999", "ref": i["ref"]})
                 d["refs"].add(i["ref"]); d["src"].add(i["source_id"]); d["pirs"].add(r["id"])
                 d["first"] = min(d["first"], str(i["date"])[:10])
@@ -2133,7 +2150,7 @@ def report_pdf(res, inds, per, src, iv=None):
     n = lambda st: sum(1 for x in per.values() if x["st"] == st)
     total, items = len(res), sum(r["count"] for r in res)
     d.h2("Summary")
-    d.kpis([(f"{n('answered')}/{total}", "answered", STC["answered"]), (f"{n('supported')}/{total}", "supported", STC["supported"]), (items, "items on a PIR", TEAL), (len(inds), "indicators", NAVY)])
+    d.kpis([(f"{n('answered')}/{total}", "answered", STC["answered"]), (f"{n('supported')}/{total}", "supported", STC["supported"]), (items, "items on a PIR", TEAL), (n_ioc(inds), "IoCs", NAVY)])
     todo = [str(r["id"]) for r in res if per[r["id"]]["st"] in ("partial", "open")]
     d.para(f"{n('answered') + n('supported')} of {total} requirements have a confirmed or well-supported answer. {n('partial')} have partial evidence and {n('open')} have none yet"
            + (f" ({', '.join(todo)} need more evidence or a second independent source)." if todo else "."))
@@ -2179,7 +2196,8 @@ def report_pdf(res, inds, per, src, iv=None):
 
     d.h2("Indicators")
     c = Counter(x["type"] for x in inds)
-    d.para(f"{len(inds)} indicators extracted from collected items: " + (", ".join(f"{c[t]} {INAME[t]}" for t in ITYPES if c[t]) or "none") + ". IPs, URLs and domains are defanged.", 9, col=MUTE)
+    d.para(f"{n_ioc(inds)} indicators of compromise (defanged, from an IoC list or a threat feed): " + (", ".join(f"{c[t]} {INAME[t]}" for t in IOC_TYPES if c[t]) or "none")
+           + f". Context, not IoCs: " + (", ".join(f"{c[t]} {INAME[t]}" for t in ITYPES if t not in IOC_TYPES and c[t]) or "none") + ".", 9, col=MUTE)
     d.y -= 4
     if inds:
         d.table(["Type", "Indicator", "Seen", "PIRs", "First seen"], [66, 244, 38, 97, 70],
@@ -2331,7 +2349,7 @@ def render(errors, res, failed, today, sources=(), runs=(), marks={}, role="Admi
     last = {r["source_id"]: r for r in runs}
     mk = lambda i: marks.get((i["pir_id"], i["ref"]), {})
     inds = indicators(res)
-    hrows = health(res, runs, sources, marks, len(inds))
+    hrows = health(res, runs, sources, marks, n_ioc(inds))
     per_pir = statuses(res, mk, src)
     status = {k: x["st"] for k, x in per_pir.items()}
     n_of = lambda s: sum(1 for x in status.values() if x == s)
@@ -2437,7 +2455,9 @@ def render(errors, res, failed, today, sources=(), runs=(), marks={}, role="Admi
                   f'<span class="sub">{s_(x.get("name"))} &middot; {s_(x.get("type"))}<br>{a_}/{n_} marked useful</span>'
                   f'<span class="sub{" bad" if s in failed else ""}">{"FAILED " if s in failed else ""}{e(t)}</span></li>')
 
-    tiles = "".join(f'<button class="tile" data-type="{t}" aria-pressed="false"><b>{sum(1 for d in inds if d["type"] == t)}</b><span>{INAME[t]}</span></button>' for t in ITYPES)
+    tile = lambda t: f'<button class="tile" data-type="{t}" aria-pressed="false"><b>{sum(1 for d in inds if d["type"] == t)}</b><span>{INAME[t]}</span></button>'
+    tiles = ('<p class="tilelbl">Indicators of compromise</p><div class="tiles">' + "".join(tile(t) for t in IOC_TYPES)
+             + '</div><p class="tilelbl">Context, not IoCs</p><div class="tiles">' + "".join(tile(t) for t in ITYPES if t not in IOC_TYPES) + "</div>")
     irows = ""
     for d in inds:
         t, v = d["type"], d["value"]
@@ -2494,7 +2514,7 @@ def render(errors, res, failed, today, sources=(), runs=(), marks={}, role="Admi
     <div id="qislot"></div>
     <h2>Hi, I'm Qi. I turn raw feeds into answers.</h2>
     <p class="lead">I read every feed, keep what matches your PIRs, pull out the CVEs, IPs, hashes and actors, and tell you what we know and how sure I am.</p>
-    <ol class="flow"><li><b>Collect</b><em>{fetched} items</em></li><li><b>Match</b><em>{n_items} on a PIR</em></li><li><b>Extract</b><em>{len(inds)} indicators</em></li><li><b>Answer</b><em>{supported + answered}/{total} PIRs</em></li></ol>
+    <ol class="flow"><li><b>Collect</b><em>{fetched} items</em></li><li><b>Match</b><em>{n_items} on a PIR</em></li><li><b>Extract</b><em>{n_ioc(inds)} IoCs</em></li><li><b>Answer</b><em>{supported + answered}/{total} PIRs</em></li></ol>
     <button class="btn go" id="go" type="button">Proceed to Intelligence &rarr;</button>
   </div>
 </div></section>
@@ -2506,7 +2526,7 @@ def render(errors, res, failed, today, sources=(), runs=(), marks={}, role="Admi
 
 <section class="ws" id="workspace"><div class="wrap">
   <div class="wshead"><h2>Your intelligence</h2>
-    <div class="stats" role="list">{chip("good" if answered else "", "answered", f"{answered}/{total}")}{chip("good" if supported else "", "supported", f"{supported}/{total}")}{chip("", "covered 2+ src", f"{covered}/{total}")}{chip("", "items", n_items)}{chip("", "indicators", len(inds))}{chip("bad" if feeds_ok < feeds_n else "good", "feeds ok", f"{feeds_ok}/{feeds_n}")}</div></div>
+    <div class="stats" role="list">{chip("good" if answered else "", "answered", f"{answered}/{total}")}{chip("good" if supported else "", "supported", f"{supported}/{total}")}{chip("", "covered 2+ src", f"{covered}/{total}")}{chip("", "items", n_items)}{chip("", "IoCs", n_ioc(inds))}{chip("bad" if feeds_ok < feeds_n else "good", "feeds ok", f"{feeds_ok}/{feeds_n}")}</div></div>
   <div class="tabs glass" role="tablist" aria-label="Views"><button class="tab" role="tab" data-view="intel" aria-selected="true">Intelligence</button><button class="tab" role="tab" data-view="internal" aria-selected="false">Internal</button><button class="tab" role="tab" data-view="overview" aria-selected="false">Overview</button><button class="tab" role="tab" data-view="pirs" aria-selected="false">Requirements</button><button class="tab" role="tab" data-view="sources" aria-selected="false">Sources</button><button class="tab" role="tab" data-view="health" aria-selected="false">Health{f' <span class="lvl {"fail" if bad_n else "warn"}">{bad_n or warn_n}</span>' if bad_n or warn_n else ''}</button></div>
 <div class="shell">
 <aside class="side" aria-label="Navigation">
@@ -2528,17 +2548,17 @@ def render(errors, res, failed, today, sources=(), runs=(), marks={}, role="Admi
 <div class="view" data-view="intel">
 <section class="card"><h2 class="h">Key judgments</h2><div class="kj">{kj}</div></section>
 <section class="card"><h2 class="h">Export &amp; share</h2><div class="exp">
-  <a class="xo" href="/iocs.csv" download="qent_indicators.csv"><b>CSV</b><span>Indicator table for Excel, a SIEM or a blocklist.</span><em>{len(inds)} indicators</em></a>
+  <a class="xo" href="/iocs.csv" download="qent_indicators.csv"><b>CSV</b><span>Malicious indicators for Excel, a SIEM or a blocklist.</span><em>{n_ioc(inds)} IoCs</em></a>
   <a class="xo" href="/export.stix.json" download="qent_stix21.json"><b>STIX 2.1 JSON</b><span>Machine-readable bundle to import into MISP or any STIX/TAXII tool.</span><em>indicators + one report per PIR</em></a>
   <a class="xo" href="/report.pdf" download="qent_report.pdf"><b>PDF report</b><span>All intelligence as one report, for sharing between internal teams.</span><em>{total} PIRs &middot; TLP:AMBER</em></a>
 </div></section>
-<section class="card"><h2 class="h">Indicators &middot; extracted from collected items <a class="dl" href="/iocs.csv" download="qent_indicators.csv">Export CSV</a></h2>
-  <div class="tiles">{tiles}</div>
-  <div class="flt"><label>Type<select id="i-type"><option value="">All</option>{"".join(f'<option value="{t}">{INAME[t]}</option>' for t in ITYPES)}</select></label>
+<section class="card"><h2 class="h">Indicators of compromise &middot; from collected items <a class="dl" href="/iocs.csv" download="qent_indicators.csv">Export CSV</a></h2>
+  {tiles}
+  <div class="flt"><label>Type<select id="i-type"><option value="">All</option><optgroup label="Indicators of compromise">{"".join(f'<option value="{t}">{INAME[t]}</option>' for t in IOC_TYPES)}</optgroup><optgroup label="Context, not IoCs">{"".join(f'<option value="{t}">{INAME[t]}</option>' for t in ITYPES if t not in IOC_TYPES)}</optgroup></select></label>
     <label>PIR<select id="i-pir"><option value="">All</option>{pir_opts}</select></label>
     <label>Search<input id="i-q" type="search" placeholder="CVE, IP, actor..."></label><span class="mono" id="i-count" style="color:var(--mute);font-size:12px"></span></div>
   <div class="mxw"><table class="tbl" id="ind"><thead><tr><th>Type</th><th>Indicator</th><th>Seen</th><th>Sources</th><th>PIRs</th><th>First seen</th><th>Item</th></tr></thead><tbody>{irows or '<tr><td colspan="7" class="none">No indicators in the collected items yet.</td></tr>'}</tbody></table></div>
-  <p class="leg">IPs, URLs and domains are shown defanged (1[.]2[.]3[.]4) so they are not clickable by accident; pivot links open VirusTotal / NVD / MITRE. Values are regex-extracted from titles, summaries and article text, so confirm before blocking.</p></section>
+  <p class="leg">Only malicious indicators are kept: values the article defanged (1[.]2[.]3[.]4), values under its own IoC list, and threat-feed or MISP entries. Plain links, vendor sites and public resolvers are left out. CVEs, techniques and actors are context. Shown defanged so they are not clickable by accident; pivot links open VirusTotal / NVD / MITRE. Confirm before blocking.</p></section>
 </div>
 <div class="view" data-view="internal" hidden>{internal_html(internal, can(role, "logs"), can_adm) if internal else ""}</div>
 <div class="view" data-view="pirs" hidden>{panels or '<section class="card"><h2 class="h">No PIRs yet</h2><p class="leg">A PIR is one question the business needs answered, tied to a decision. Write the first one with New PIR and Qent collects around it.</p></section>'}</div>
@@ -2619,10 +2639,19 @@ def page_iocs(url):
         raw = get(url, cap=400_000).decode("utf8", "ignore")
     except Exception:
         return ""
-    text = re.sub(r"<(script|style)[^>]*>.*?</\1>", " ", raw, flags=re.S | re.I)
-    text = re.sub(r"<[^>]+>", " ", text)
-    # ponytail: actors skipped here, page boilerplate names too many; sequential fetch, ~20s timeout per page
-    return " ".join(sorted({f"{t}:{v}" for t, v in extract(text) if t != "actor"}))[:4000]
+    return ioc_tokens(raw)
+
+
+IOC_HEAD = re.compile(r"(?is)<(h[1-6]|strong|b)\b[^>]*>(?:(?!</\1>).){0,60}?(?:indicators?\s+of\s+compromise|\bIOCs?\b)(?:(?!</\1>).){0,40}</\1>")  # a real heading, not the word in a menu
+
+
+def ioc_tokens(raw):
+    """Indicator tokens from an article page: defanged values anywhere, plain IPs and hashes only after an IoC heading (the writer's own list).
+    ponytail: actors skipped, page boilerplate names too many; sequential fetch, ~20s timeout per page."""
+    strip = lambda s: re.sub(r"<[^>]+>", " ", re.sub(r"<(script|style)[^>]*>.*?</\1>", " ", s, flags=re.S | re.I))
+    h = IOC_HEAD.search(raw)
+    found = set(extract(strip(raw))) | (set(extract(strip(raw[h.end():h.end() + 80000])[:20000], plain=True)) if h else set())
+    return " ".join(sorted({f"{t}:{v}" for t, v in found if t != "actor"}))[:4000]
 
 
 def parse(kind, raw, base=""):
@@ -2638,7 +2667,7 @@ def parse(kind, raw, base=""):
     elif kind == "feodo":  # ponytail: matches malware family only, not IPs; add IP-list matching if a PIR needs it
         for v in json.loads(raw):
             yield (f"https://feodotracker.abuse.ch/browse/host/{v['ip_address']}/", f"{v['malware']} C2 {v['ip_address']}",
-                   f"{v['malware']} {v.get('country', '')} {v.get('as_name', '')}", str(v.get("first_seen", ""))[:10])
+                   f"{v['malware']} {v.get('country', '')} {v.get('as_name', '')}", str(v.get("first_seen", ""))[:10], "ip:" + v["ip_address"])  # a C2 blocklist: every address is malicious
     else:  # RSS 2.0
         for it in ET.fromstring(raw).iter("item"):
             t = lambda k: (it.findtext(k) or "").strip()
@@ -2815,7 +2844,8 @@ class H(BaseHTTPRequestHandler):
             w = csv.writer(buf)
             w.writerow(["type", "value", "defanged", "seen", "sources", "pirs", "first_seen", "ref"])
             for d in indicators(res):
-                w.writerow([safe_cell(x) for x in (d["type"], d["value"], defang(d["type"], d["value"]), len(d["refs"]), ";".join(sorted(d["src"])), ";".join(sorted(d["pirs"])), d["first"], d["ref"])])
+                if d["type"] in IOC_TYPES:  # a blocklist: no CVEs, techniques or actors
+                    w.writerow([safe_cell(x) for x in (d["type"], d["value"], defang(d["type"], d["value"]), len(d["refs"]), ";".join(sorted(d["src"])), ";".join(sorted(d["pirs"])), d["first"], d["ref"])])
             return self._send(200, buf.getvalue().encode(), "text/csv; charset=utf-8", (("Content-Disposition", 'attachment; filename="qent_indicators.csv"'),))
         if path in ("/export.stix.json", "/report.pdf"):
             res, inds, per, src = export_ctx()
@@ -3117,7 +3147,11 @@ def selftest():
     assert datetime.fromisoformat(now_iso()) <= utcnow() + timedelta(seconds=1)
     # --- exports: STIX 2.1 and PDF ---
     txt = "APT28 and Emotet used CVE-2026-1234 (T1566) from 198.51.100.7, evil[.]example, hxxps://bad[.]example/x and " + "a" * 64
-    xr = [{"id": "P1", "question": "Who targets us?", "count": 1, "sources": ["S1"], "flags": ["GAP: nothing from S2"],"items": [{"ref": "https://x.test/a", "source_id": "S1", "title": txt, "date": "2026-10-10"}]}]
+    xr = [{"id": "P1", "question": "Who targets us?", "count": 1, "sources": ["S1"], "flags": ["GAP: nothing from S2"],"items": [{"ref": "https://x.test/a", "source_id": "S1", "title": txt, "date": "2026-10-10", "iocs": "ip:198.51.100.7 hash:" + "a" * 64}]}]
+    assert {(t, v) for t, v in extract(txt)} == {("actor", "APT28"), ("actor", "Emotet"), ("cve", "CVE-2026-1234"), ("ttp", "T1566"), ("domain", "evil.example"), ("domain", "bad.example"), ("url", "https://bad.example/x")}  # plain IP and hash in prose are not IoCs
+    pg = "<p>We saw 8.8.8.8 and 203.0.113.9 in prose, C2 at 198[.]51[.]100[.]8.</p><h2>Indicators of Compromise</h2><p>203.0.113.7 " + "b" * 64 + " 8.8.4.4</p>"
+    assert set(ioc_tokens(pg).split()) == {"ip:198.51.100.8", "ip:203.0.113.7", "ip:8.8.4.4", "hash:" + "b" * 64}
+    assert not any(d["value"] in BENIGN for d in indicators([{"id": "P", "items": [{"ref": "r", "source_id": "S", "title": "", "date": "2026-10-10", "iocs": ioc_tokens(pg)}]}]))
     xi = indicators(xr)
     real, llm_provider = llm_provider, lambda: ""  # still no network
     xp = statuses(xr, lambda i: {}, {"S1": {"reliability": "B"}})

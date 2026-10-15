@@ -54,7 +54,7 @@ python qent.py --test     # self-test, no network, prints "selftest ok"
 Python 3.12+, **no packages needed** (only `pip install openpyxl` for the first-start PIR import). The first start loads the **demo PIRs** from `pir_workbook.xlsx`.
 
 Demo path for a presentation:
-1. Click **Collect now**. Nine public feeds (CISA KEV, CERT-EU, Microsoft, CrowdStrike, Unit 42, The DFIR Report, The Hacker News, Dark Reading, abuse.ch) are read; only items matching a PIR are kept, with CVEs, IPs, hashes and actors extracted.
+1. Click **Collect now**. Nine public feeds (CISA KEV, CERT-EU, Microsoft, CrowdStrike, Unit 42, The DFIR Report, The Hacker News, Dark Reading, abuse.ch) are read; only items matching a PIR are kept, with malicious IoCs (defanged, from an IoC list or a threat feed) and context (CVEs, techniques, actors) extracted.
 2. **Requirements** tab: each PIR moves from OPEN to PARTIAL to SUPPORTED (2+ independent sources and a strong item). An analyst confirms ANSWERED.
 3. **Internal** tab: drop `samples/ssl_vpn_logs.csv`, then `firewall.csv` and `edr.csv`. About 20 findings appear with no feed and no AI: scans, brute force, success after failures, beaconing, encoded PowerShell, certutil abuse, Fortinet / Citrix / Ivanti / Cisco exploit probes, scanner clients, impossible travel.
 4. **Share**: STIX 2.1, CSV, PDF report, TAXII 2.1, MISP push, all scrubbed of internal identifiers.
